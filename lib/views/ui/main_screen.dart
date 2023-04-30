@@ -22,12 +22,9 @@ class MainScreen extends StatelessWidget {
     return Consumer<MainScreenNotifier>(
         builder: (context, mainScreenNotifier, child) {
       return Scaffold(
-        backgroundColor: const Color(0xFFE2E2E2),
         body: pageList[mainScreenNotifier.pageIndex],
         bottomNavigationBar: const BottomBar(),
       );
     });
   }
 }
-
-

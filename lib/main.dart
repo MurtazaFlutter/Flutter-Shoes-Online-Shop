@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_shop/controllers/main_screen_notifier.dart';
 import 'package:online_shop/controllers/shoes_notifier.dart';
 import 'package:provider/provider.dart';
@@ -20,11 +21,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(),
-      home: MainScreen(),
+    return ScreenUtilInit(
+      designSize: ScreenUtil.defaultSize,
+      builder: (context, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(),
+        home: MainScreen(),
+      ),
     );
   }
 }

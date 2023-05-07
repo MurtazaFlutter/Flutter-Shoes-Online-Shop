@@ -1,4 +1,6 @@
-class Sneakers {
+import 'package:flutter/material.dart';
+
+class Sneakers with ChangeNotifier {
   final String id;
   final String name;
   final String category;

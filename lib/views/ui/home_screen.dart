@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:provider/provider.dart';
 import '../../controllers/shoes_notifier.dart';
@@ -17,25 +18,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late final TabController _tabController =
       TabController(length: 3, vsync: this);
 
-  // List<Sneakers> shoes = [];
-
-  // Future<List<Sneakers>> _loadShoes() async {
-  //   String jsonString =
-  //       await rootBundle.loadString('assets/json/men_shoes.json');
-  //   List<dynamic> jsonList = jsonDecode(jsonString);
-  //   List<Sneakers> shoeList = [];
-  //   for (var shoeJson in jsonList) {
-  //     shoeList.add(Sneakers.fromJson(shoeJson));
-  //   }
-  //   return shoeList;
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _loadShoes();
-  // }
-
   @override
   Widget build(BuildContext context) {
     final shoesProvider = Provider.of<ShoesProvider>(context, listen: false);
@@ -47,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             children: [
               Container(
                 padding: const EdgeInsets.fromLTRB(16, 45, 0, 0),
-                height: MediaQuery.of(context).size.height * 0.4,
+                height: 300.h,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
@@ -57,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                 ),
                 child: Container(
-                  padding: const EdgeInsets.only(left: 8, bottom: 15),
+                  padding: EdgeInsets.only(left: 8.w, bottom: 15),
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       Text(
                         'Athletics Shoes Collection',
                         style: appStyle(
-                          42,
+                          30.h,
                           Colors.white,
                           FontWeight.bold,
                           1.5,
@@ -80,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           isScrollable: true,
                           labelColor: Colors.white,
                           labelStyle:
-                              appStyle(24, Colors.white, FontWeight.bold, 0),
+                              appStyle(20.w, Colors.white, FontWeight.bold, 0),
                           unselectedLabelColor: Colors.grey.withOpacity(0.3),
                           tabs: const [
                             Tab(
@@ -112,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.405,
                             child: FutureBuilder(
-                              future: shoesProvider.loadShoes(),
+                              future: shoesProvider.loadMaleShoes(),
                               builder:
                                   ((context, AsyncSnapshot<void> snapshot) {
                                 if (snapshot.connectionState ==
@@ -127,20 +109,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: ((context, int index) {
                                         final male = shoesProvider.shoes[index];
-                                        return ProductCard(
-                                          price: "\$${male.price}",
-                                          category: male.category,
-                                          id: male.id,
-                                          name: male.name,
-                                          image: male.imageUrl[0],
+                                        return ChangeNotifierProvider.value(
+                                          value: male,
+                                          child: const ProductCard(),
                                         );
                                       }));
                                 }
                               }),
                             ),
                           ),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: 15.h,
                           ),
                           Column(
                             children: [
@@ -151,18 +130,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   Text(
                                     'Latest Shoes',
                                     style: appStyle(
-                                        26, Colors.black, FontWeight.bold, 0),
+                                        20.h, Colors.black, FontWeight.bold, 0),
                                   ),
                                   Row(
                                     children: [
                                       Text(
                                         'Latest Shoes',
-                                        style: appStyle(22, Colors.black,
+                                        style: appStyle(20.h, Colors.black,
                                             FontWeight.w500, 0),
                                       ),
-                                      const Icon(
+                                      Icon(
                                         AntDesign.caretright,
-                                        size: 22,
+                                        size: 20.h,
                                       )
                                     ],
                                   )
@@ -170,17 +149,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: 15.h,
                           ),
                           FutureBuilder(
-                            future: shoesProvider.loadShoes(),
+                            future: shoesProvider.loadMaleShoes(),
                             builder: ((context, AsyncSnapshot<void> snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
                                 return const CircularProgressIndicator();
                               } else if (snapshot.hasError) {
-                                
                                 return Text('error ${snapshot.hasError}');
                               } else {
                                 return SizedBox(
@@ -188,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       MediaQuery.of(context).size.height * 0.13,
                                   child: ListView.builder(
                                       physics: const BouncingScrollPhysics(),
-                                      itemCount: 6,
+                                      itemCount: shoesProvider.shoes.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: ((context, index) {
                                         final male = shoesProvider.shoes[index];

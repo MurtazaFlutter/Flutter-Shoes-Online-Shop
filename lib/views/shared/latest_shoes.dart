@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LatestShoes extends StatelessWidget {
   final String imageUrl;
@@ -13,10 +14,11 @@ class LatestShoes extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.12,
+        height: 120.h,
+        // height: MediaQuery.of(context).size.height * 0.12,
         width: MediaQuery.of(context).size.height * 0.14,
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(16)),
+            color: Colors.white, borderRadius: BorderRadius.circular(16.r)),
         child: CachedNetworkImage(imageUrl: imageUrl),
       ),
     );

@@ -1,10 +1,9 @@
-import 'dart:convert';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:online_shop/models/shoes_mode.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:provider/provider.dart';
+import '../../controllers/shoes_notifier.dart';
 import '../shared/app_style.dart';
+import '../shared/latest_shoes.dart';
 import '../shared/product_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,27 +17,28 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late final TabController _tabController =
       TabController(length: 3, vsync: this);
 
-  List<Sneakers> shoes = [];
+  // List<Sneakers> shoes = [];
 
-  Future<List<Sneakers>> _loadShoes() async {
-    String jsonString =
-        await rootBundle.loadString('assets/json/men_shoes.json');
-    List<dynamic> jsonList = jsonDecode(jsonString);
-    List<Sneakers> shoeList = [];
-    for (var shoeJson in jsonList) {
-      shoeList.add(Sneakers.fromJson(shoeJson));
-    }
-    return shoeList;
-  }
+  // Future<List<Sneakers>> _loadShoes() async {
+  //   String jsonString =
+  //       await rootBundle.loadString('assets/json/men_shoes.json');
+  //   List<dynamic> jsonList = jsonDecode(jsonString);
+  //   List<Sneakers> shoeList = [];
+  //   for (var shoeJson in jsonList) {
+  //     shoeList.add(Sneakers.fromJson(shoeJson));
+  //   }
+  //   return shoeList;
+  // }
 
-  @override
-  void initState() {
-    super.initState();
-    _loadShoes();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _loadShoes();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final shoesProvider = Provider.of<ShoesProvider>(context, listen: false);
     return Scaffold(
         backgroundColor: const Color(0xFFE2E2E2),
         body: SizedBox(
@@ -110,39 +110,35 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.405,
-                              child: FutureBuilder<List<Sneakers>>(
-                                  future: _loadShoes(),
-                                  builder: ((context,
-                                      AsyncSnapshot<List<Sneakers>> snapshot) {
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return const CircularProgressIndicator();
-                                    } else if (snapshot.hasError) {
-                                      print(
-                                          ' error is here ${snapshot.hasError}');
-                                      return Text('error ${snapshot.hasError}');
-                                    } else {
-                                      return ListView.builder(
-                                          physics:
-                                              const BouncingScrollPhysics(),
-                                          itemCount: snapshot.data!.length,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: ((context, int index) {
-                                            return ProductCard(
-                                              price:
-                                                  "\$${snapshot.data![index].price}",
-                                              category: snapshot
-                                                  .data![index].category,
-                                              id: snapshot.data![index].id,
-                                              name: snapshot.data![index].name,
-                                              image: snapshot
-                                                  .data![index].imageUrl[0],
-                                            );
-                                          }));
-                                    }
-                                  }))),
+                            height: MediaQuery.of(context).size.height * 0.405,
+                            child: FutureBuilder(
+                              future: shoesProvider.loadShoes(),
+                              builder:
+                                  ((context, AsyncSnapshot<void> snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return const CircularProgressIndicator();
+                                } else if (snapshot.hasError) {
+                                  return Text('error ${snapshot.hasError}');
+                                } else {
+                                  return ListView.builder(
+                                      physics: const BouncingScrollPhysics(),
+                                      itemCount: shoesProvider.shoes.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: ((context, int index) {
+                                        final male = shoesProvider.shoes[index];
+                                        return ProductCard(
+                                          price: "\$${male.price}",
+                                          category: male.category,
+                                          id: male.id,
+                                          name: male.name,
+                                          image: male.imageUrl[0],
+                                        );
+                                      }));
+                                }
+                              }),
+                            ),
+                          ),
                           const SizedBox(
                             height: 20,
                           ),
@@ -177,34 +173,33 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           const SizedBox(
                             height: 20,
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.13,
-                            child: ListView.builder(
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: 6,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: ((context, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.12,
-                                      width:
-                                          MediaQuery.of(context).size.height *
-                                              0.2,
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey,
-                                          borderRadius:
-                                              BorderRadius.circular(16)),
-                                      child: CachedNetworkImage(
-                                        imageUrl:
-                                            "https://d326fntlu7tb1e.cloudfront.net/uploads/58282ea3-b815-4d26-9f4f-382aa62f67cf-HP5404_a1.webp",
-                                      ),
-                                    ),
-                                  );
-                                })),
-                          )
+                          FutureBuilder(
+                            future: shoesProvider.loadShoes(),
+                            builder: ((context, AsyncSnapshot<void> snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const CircularProgressIndicator();
+                              } else if (snapshot.hasError) {
+                                
+                                return Text('error ${snapshot.hasError}');
+                              } else {
+                                return SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.13,
+                                  child: ListView.builder(
+                                      physics: const BouncingScrollPhysics(),
+                                      itemCount: 6,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: ((context, index) {
+                                        final male = shoesProvider.shoes[index];
+                                        return LatestShoes(
+                                          imageUrl: male.imageUrl[1],
+                                        );
+                                      })),
+                                );
+                              }
+                            }),
+                          ),
                         ],
                       ),
                     ),

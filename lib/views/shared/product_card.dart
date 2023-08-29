@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:provider/provider.dart';
-import '../../models/shoes_mode.dart';
+import '../../models/shoes_model.dart';
 import 'app_style.dart';
 
 class ProductCard extends StatefulWidget {
@@ -73,11 +73,11 @@ class _ProductCardState extends State<ProductCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                     product.name,
+                      product.name,
                       style: appStyle(28.h, Colors.black, FontWeight.bold, 1.1),
                     ),
                     Text(
-                     product.category,
+                      product.category,
                       style: appStyle(12.h, Colors.grey, FontWeight.bold, 1.5),
                     ),
                   ],
@@ -89,7 +89,7 @@ class _ProductCardState extends State<ProductCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                   product.price,
+                      "\$${product.price}",
                       style: appStyle(25.h, Colors.black, FontWeight.w600, 0),
                     ),
                     Row(

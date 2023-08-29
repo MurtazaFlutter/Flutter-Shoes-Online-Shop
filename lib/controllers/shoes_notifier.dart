@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:online_shop/models/shoes_mode.dart';
+import 'package:online_shop/models/shoes_model.dart';
 
 class ShoesProvider with ChangeNotifier {
   List<Sneakers> _shoes = [];

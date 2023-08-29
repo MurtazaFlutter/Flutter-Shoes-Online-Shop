@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:online_shop/services/helper.dart';
 import 'package:provider/provider.dart';
-import '../../controllers/shoes_notifier.dart';
+import '../../models/shoes_model.dart';
 import '../shared/app_style.dart';
 import '../shared/latest_shoes.dart';
 import '../shared/product_card.dart';
@@ -18,9 +19,32 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late final TabController _tabController =
       TabController(length: 3, vsync: this);
 
+  late Future<List<Sneakers>> _male;
+  late Future<List<Sneakers>> _female;
+  late Future<List<Sneakers>> _kids;
+
+  void getMale() {
+    _male = Helper().getMaleSneakers();
+  }
+
+  void getFemale() {
+    _female = Helper().getFemaleSneakers();
+  }
+
+  void getKids() {
+    _kids = Helper().getKidsShoes();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getMale();
+    getFemale();
+    getKids();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final shoesProvider = Provider.of<ShoesProvider>(context, listen: false);
     return Scaffold(
         backgroundColor: const Color(0xFFE2E2E2),
         body: SizedBox(
@@ -93,22 +117,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         children: [
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.405,
-                            child: FutureBuilder(
-                              future: shoesProvider.loadMaleShoes(),
-                              builder:
-                                  ((context, AsyncSnapshot<void> snapshot) {
+                            child: FutureBuilder<List<Sneakers>>(
+                              future: _male,
+                              builder: ((context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
                                   return const CircularProgressIndicator();
                                 } else if (snapshot.hasError) {
                                   return Text('error ${snapshot.hasError}');
                                 } else {
+                                  final male = snapshot.data;
                                   return ListView.builder(
                                       physics: const BouncingScrollPhysics(),
-                                      itemCount: shoesProvider.shoes.length,
+                                      itemCount: male!.length,
                                       scrollDirection: Axis.horizontal,
-                                      itemBuilder: ((context, int index) {
-                                        final male = shoesProvider.shoes[index];
+                                      itemBuilder: ((context, index) {
+                                        final male = snapshot.data![index];
                                         return ChangeNotifierProvider.value(
                                           value: male,
                                           child: const ProductCard(),
@@ -135,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   Row(
                                     children: [
                                       Text(
-                                        'Latest Shoes',
+                                        'See All',
                                         style: appStyle(20.h, Colors.black,
                                             FontWeight.w500, 0),
                                       ),
@@ -152,24 +176,25 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           SizedBox(
                             height: 15.h,
                           ),
-                          FutureBuilder(
-                            future: shoesProvider.loadMaleShoes(),
-                            builder: ((context, AsyncSnapshot<void> snapshot) {
+                          FutureBuilder<List<Sneakers>>(
+                            future: _male,
+                            builder: ((context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
                                 return const CircularProgressIndicator();
                               } else if (snapshot.hasError) {
                                 return Text('error ${snapshot.hasError}');
                               } else {
+                                final shoe = snapshot.data;
                                 return SizedBox(
                                   height:
-                                      MediaQuery.of(context).size.height * 0.13,
+                                      MediaQuery.of(context).size.height * 0.12,
                                   child: ListView.builder(
                                       physics: const BouncingScrollPhysics(),
-                                      itemCount: shoesProvider.shoes.length,
+                                      itemCount: shoe!.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: ((context, index) {
-                                        final male = shoesProvider.shoes[index];
+                                        final male = shoe[index];
                                         return LatestShoes(
                                           imageUrl: male.imageUrl[1],
                                         );

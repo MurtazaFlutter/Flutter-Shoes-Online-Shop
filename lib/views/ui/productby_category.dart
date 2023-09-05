@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-
-import '../shared/app_style.dart';
+import '../../utils/exports.dart';
 
 class ProductByCategory extends StatefulWidget {
   const ProductByCategory({super.key});
@@ -15,6 +11,30 @@ class _ProductByCategoryState extends State<ProductByCategory>
     with TickerProviderStateMixin {
   late final TabController _tabController =
       TabController(length: 3, vsync: this);
+
+  late Future<List<Sneakers>> _male;
+  late Future<List<Sneakers>> _female;
+  late Future<List<Sneakers>> _kids;
+
+  void getMale() {
+    _male = Helper().getMaleSneakers();
+  }
+
+  void getFemale() {
+    _female = Helper().getFemaleSneakers();
+  }
+
+  void getKids() {
+    _kids = Helper().getKidsShoes();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getMale();
+    getFemale();
+    getKids();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,26 +105,18 @@ class _ProductByCategoryState extends State<ProductByCategory>
             ),
             Padding(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.2,
+                  top: MediaQuery.of(context).size.height * 0.175,
                   left: 16,
                   right: 12),
-              child: TabBarView(controller: _tabController, children: [
-                Container(
-                  height: 500,
-                  width: 300,
-                  color: Colors.red,
-                ),
-                Container(
-                  height: 500,
-                  width: 300,
-                  color: Colors.green,
-                ),
-                Container(
-                  height: 500,
-                  width: 300,
-                  color: Colors.amberAccent,
-                ),
-              ]),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: TabBarView(controller: _tabController, children: [
+                  //const StaggeredTile(),
+                  LatestShoes(male: _male),
+                  LatestShoes(male: _female),
+                  LatestShoes(male: _kids),
+                ]),
+              ),
             )
           ],
         ),

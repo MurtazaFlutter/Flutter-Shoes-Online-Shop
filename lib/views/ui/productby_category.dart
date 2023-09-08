@@ -105,7 +105,7 @@ class _ProductByCategoryState extends State<ProductByCategory>
             ),
             Padding(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.175,
+                  top: MediaQuery.of(context).size.height * 0.21,
                   left: 16,
                   right: 12),
               child: ClipRRect(
@@ -122,5 +122,35 @@ class _ProductByCategoryState extends State<ProductByCategory>
         ),
       ),
     );
+  }
+
+  Future<dynamic> filter() {
+    return showModalBottomSheet(
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        barrierColor: Colors.white54,
+        context: context,
+        builder: ((context) => Container(
+              height: MediaQuery.of(context).size.height * 0.82,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25),
+                      topRight: Radius.circular(25))),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 5,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    color: Colors.black38,
+                  ),
+                ],
+              ),
+            )));
   }
 }

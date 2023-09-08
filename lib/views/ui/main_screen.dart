@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_shop/controllers/main_screen_notifier.dart';
 import 'package:online_shop/views/ui/profile.dart';
 import 'package:provider/provider.dart';
-import '../shared/bottom_nav.dart';
+import '../components/shared/bottom_nav.dart';
 import 'cart_screen.dart';
 import 'home_screen.dart';
 import 'productby_category.dart';

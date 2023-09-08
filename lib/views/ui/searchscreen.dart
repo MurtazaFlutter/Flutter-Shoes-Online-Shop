@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../shared/app_style.dart';
+import '../components/shared/app_style.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_shop/services/helper.dart';
-import '../../models/shoes_model.dart';
-import '../shared/app_style.dart';
-import '../shared/home_widget.dart';
+import 'package:online_shop/views/components/shared/home_widget.dart';
+
+import '../../utils/exports.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

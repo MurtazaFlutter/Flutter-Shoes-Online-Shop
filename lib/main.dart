@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_shop/controllers/main_screen_notifier.dart';
+import 'package:online_shop/controllers/product_notifier.dart';
 import 'package:provider/provider.dart';
 import 'views/ui/main_screen.dart';
 
@@ -8,6 +9,9 @@ void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: ((context) => MainScreenNotifier()),
+    ),
+    ChangeNotifierProvider(
+      create: ((context) => ProductNotifier()),
     ),
   ], child: const MyApp()));
 }

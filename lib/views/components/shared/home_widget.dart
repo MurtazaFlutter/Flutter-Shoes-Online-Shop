@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:online_shop/views/components/shared/app_style.dart';
+import 'package:online_shop/views/ui/product_detail_page.dart';
 import 'package:online_shop/views/ui/productby_category.dart';
 import 'package:provider/provider.dart';
 import '../../../models/shoes_model.dart';
@@ -43,9 +44,16 @@ class HomeWidget extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: ((context, index) {
                         final male = snapshot.data![index];
-                        return ChangeNotifierProvider.value(
-                          value: male,
-                          child: const ProductCard(),
+                        return GestureDetector(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => ProductDetailPage(
+                                      category: male.category, id: male.id)))),
+                          child: ChangeNotifierProvider.value(
+                            value: male,
+                            child: const ProductCard(),
+                          ),
                         );
                       }));
                 }

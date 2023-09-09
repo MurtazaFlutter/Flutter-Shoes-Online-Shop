@@ -1,5 +1,4 @@
 import 'package:online_shop/views/components/shared/home_widget.dart';
-
 import '../../utils/exports.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -65,12 +64,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     children: [
                       Text(
                         'Athletics Shoes Collection',
-                        style: appStyle(
-                          30.h,
-                          Colors.white,
-                          FontWeight.bold,
-                          1.5,
-                        ),
+                        style:
+                            appStyle(30.h, Colors.white, FontWeight.bold, 1.5),
                       ),
                       TabBar(
                           padding: EdgeInsets.zero,

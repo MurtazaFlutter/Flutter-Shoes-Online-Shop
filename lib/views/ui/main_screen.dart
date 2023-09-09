@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../components/shared/bottom_nav.dart';
 import 'cart_screen.dart';
 import 'home_screen.dart';
-import 'productby_category.dart';
 import 'searchscreen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -14,7 +13,7 @@ class MainScreen extends StatelessWidget {
   final List<Widget> pageList = [
     const HomeScreen(),
     const SearchScreen(),
-    const ProductByCategory(),
+    const HomeScreen(),
     const CartScreen(),
     const ProfileScreen()
   ];

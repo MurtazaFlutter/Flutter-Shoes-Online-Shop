@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:online_shop/views/components/shared/app_style.dart';
+import 'package:online_shop/views/ui/productby_category.dart';
 import 'package:provider/provider.dart';
 import '../../../models/shoes_model.dart';
 import 'latest_shoes.dart';
@@ -11,9 +12,11 @@ class HomeWidget extends StatelessWidget {
   const HomeWidget({
     super.key,
     required Future<List<Sneakers>> male,
+    required this.tabIndex,
   }) : _male = male;
 
   final Future<List<Sneakers>> _male;
+  final int tabIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -61,17 +64,27 @@ class HomeWidget extends StatelessWidget {
                     'Latest Shoes',
                     style: appStyle(20.h, Colors.black, FontWeight.bold, 0),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        'See All',
-                        style: appStyle(20.h, Colors.black, FontWeight.w500, 0),
-                      ),
-                      Icon(
-                        AntDesign.caretright,
-                        size: 20.h,
-                      )
-                    ],
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductByCategory(
+                            tabIndex: tabIndex,
+                          ),
+                        )),
+                    child: Row(
+                      children: [
+                        Text(
+                          'See All',
+                          style:
+                              appStyle(20.h, Colors.black, FontWeight.w500, 0),
+                        ),
+                        Icon(
+                          AntDesign.caretright,
+                          size: 20.h,
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),

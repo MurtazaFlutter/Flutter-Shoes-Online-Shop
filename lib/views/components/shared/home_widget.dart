@@ -43,15 +43,16 @@ class HomeWidget extends StatelessWidget {
                       itemCount: male!.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: ((context, index) {
-                        final male = snapshot.data![index];
+                        final sneaker = snapshot.data![index];
                         return GestureDetector(
                           onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: ((context) => ProductDetailPage(
-                                      category: male.category, id: male.id)))),
+                                      category: sneaker.category,
+                                      id: sneaker.id)))),
                           child: ChangeNotifierProvider.value(
-                            value: male,
+                            value: sneaker,
                             child: const ProductCard(),
                           ),
                         );

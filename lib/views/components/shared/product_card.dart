@@ -5,27 +5,9 @@ import 'package:provider/provider.dart';
 import '../../../models/shoes_model.dart';
 import 'app_style.dart';
 
-class ProductCard extends StatefulWidget {
+class ProductCard extends StatelessWidget {
   const ProductCard({super.key});
 
-  // final String price;
-  // final String category;
-  // final String id;
-  // final String name;
-  // final String image;
-  // const ProductCard(
-  //     {super.key,
-  //     required this.price,
-  //     required this.category,
-  //     required this.id,
-  //     required this.name,
-  //     required this.image});
-
-  @override
-  State<ProductCard> createState() => _ProductCardState();
-}
-
-class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Sneakers>(context);
@@ -74,11 +56,12 @@ class _ProductCardState extends State<ProductCard> {
                   children: [
                     Text(
                       product.name,
-                      style: appStyle(28.h, Colors.black, FontWeight.bold, 1.1),
+                      style:
+                          appStyle(28.sp, Colors.black, FontWeight.bold, 1.1),
                     ),
                     Text(
                       product.category,
-                      style: appStyle(12.h, Colors.grey, FontWeight.bold, 1.5),
+                      style: appStyle(12.sp, Colors.grey, FontWeight.bold, 1.5),
                     ),
                   ],
                 ),
@@ -90,14 +73,14 @@ class _ProductCardState extends State<ProductCard> {
                   children: [
                     Text(
                       "\$${product.price}",
-                      style: appStyle(25.h, Colors.black, FontWeight.w600, 0),
+                      style: appStyle(25.sp, Colors.black, FontWeight.w600, 0),
                     ),
                     Row(
                       children: [
                         Text(
                           'Colors',
                           style:
-                              appStyle(14.h, Colors.grey, FontWeight.w500, 0),
+                              appStyle(14.sp, Colors.grey, FontWeight.w500, 0),
                         ),
                         SizedBox(
                           width: 3.w,

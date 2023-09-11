@@ -3,9 +3,11 @@ import 'package:online_shop/utils/exports.dart';
 class ProductNotifier extends ChangeNotifier {
   int _activePage = 0;
   List<dynamic> _shoesSizes = [];
+  List<String> _sizes = [];
 
   int get activePage => _activePage;
   List<dynamic> get shoesSizes => _shoesSizes;
+  List<String> get sizes => _sizes;
 
   set activePage(int newPage) {
     _activePage = newPage;
@@ -27,6 +29,11 @@ class ProductNotifier extends ChangeNotifier {
         _shoesSizes[i]['isSelected'] = !_shoesSizes[i]['isSelected'];
       }
     }
+    notifyListeners();
+  }
+
+  set size(List<String> newSizes) {
+    _sizes = newSizes;
     notifyListeners();
   }
 }

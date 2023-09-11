@@ -1,4 +1,5 @@
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:online_shop/controllers/product_notifier.dart';
 import 'package:online_shop/utils/exports.dart';
 import 'components/checkout_btn.dart';
@@ -17,6 +18,7 @@ class ProductDetailPage extends StatefulWidget {
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
   final PageController _pageController = PageController();
+  final _cartBox = Hive.box('cart_box');
 
   late Future<Sneakers> _sneakers;
 
@@ -28,6 +30,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     } else {
       _sneakers = Helper().getKidsById(widget.id);
     }
+  }
+
+  // Add to Hive Box
+  Future<void> _createCart(Map<String, dynamic> newCart) async {
+    await _cartBox.add(newCart);
   }
 
   @override
@@ -131,9 +138,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                                   FontWeight.w500,
                                                   1),
                                             ),
-                                            const SizedBox(
-                                              width: 20,
-                                            ),
+                                            const SizedBox(width: 20),
                                             RatingBar.builder(
                                               onRatingUpdate: (rating) {},
                                               initialRating: 4,
@@ -250,7 +255,20 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                                 const EdgeInsets.only(top: 12),
                                             child: CheckOutButton(
                                               label: 'Add to bag',
-                                              onTap: () {},
+                                              onTap: () async {
+                                                _createCart({
+                                                  "id": sneaker.id,
+                                                  "name": sneaker.name,
+                                                  "category": sneaker.category,
+                                                  "sizes": sneaker.category,
+                                                  "imageUrl":
+                                                      sneaker.imageUrl[0],
+                                                  "price": sneaker.price,
+                                                  "qty": 1
+                                                });
+                                                productNotifier.sizes.clear();
+                                                Navigator.pop(context);
+                                              },
                                             ),
                                           ),
                                         )

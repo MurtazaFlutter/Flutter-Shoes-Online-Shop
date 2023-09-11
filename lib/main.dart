@@ -4,8 +4,14 @@ import 'package:online_shop/controllers/main_screen_notifier.dart';
 import 'package:online_shop/controllers/product_notifier.dart';
 import 'package:provider/provider.dart';
 import 'views/ui/main_screen.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  await Hive.openBox('cart_box');
+  await Hive.openBox('fav_box');
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: ((context) => MainScreenNotifier()),

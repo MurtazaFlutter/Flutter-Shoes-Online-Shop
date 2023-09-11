@@ -59,6 +59,11 @@ class SelectSize extends StatelessWidget {
                     selectedColor: Colors.black,
                     selected: productNotifier.shoesSizes[index]['isSelected'],
                     onSelected: (newState) {
+                      if (productNotifier.sizes.contains(sizes['size'])) {
+                        productNotifier.sizes.remove(sizes['size']);
+                      } else {
+                        productNotifier.sizes.add(sizes['size']);
+                      }
                       productNotifier.toggleCheck(index);
                     },
                   ),

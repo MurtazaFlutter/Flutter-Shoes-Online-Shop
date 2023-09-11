@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:online_shop/controllers/product_notifier.dart';
 import 'package:online_shop/views/components/shared/app_style.dart';
-import 'package:online_shop/views/ui/product_detail_page.dart';
+import 'package:online_shop/views/ui/product_detail/product_detail_page.dart';
 import 'package:online_shop/views/ui/productby_category.dart';
 import 'package:provider/provider.dart';
 import '../../../models/shoes_model.dart';
@@ -21,6 +22,7 @@ class HomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productNotifier = Provider.of<ProductNotifier>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -44,13 +46,18 @@ class HomeWidget extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: ((context, index) {
                         final sneaker = snapshot.data![index];
+
                         return GestureDetector(
-                          onTap: () => Navigator.push(
+                          onTap: () {
+                            productNotifier.shoesSizes = sneaker.sizes;
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: ((context) => ProductDetailPage(
                                       category: sneaker.category,
-                                      id: sneaker.id)))),
+                                      id: sneaker.id))),
+                            );
+                          },
                           child: ChangeNotifierProvider.value(
                             value: sneaker,
                             child: const ProductCard(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop/controllers/main_screen_notifier.dart';
+import 'package:online_shop/views/ui/cartpage/cart_page.dart';
 import 'package:online_shop/views/ui/profile.dart';
 import 'package:provider/provider.dart';
 import '../components/shared/bottom_nav.dart';
@@ -14,7 +15,7 @@ class MainScreen extends StatelessWidget {
     const HomeScreen(),
     const SearchScreen(),
     const HomeScreen(),
-    const CartScreen(),
+    const CartPage(),
     const ProfileScreen()
   ];
   @override

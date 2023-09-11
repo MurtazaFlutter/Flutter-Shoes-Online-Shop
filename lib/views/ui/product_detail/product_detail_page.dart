@@ -260,7 +260,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                                   "id": sneaker.id,
                                                   "name": sneaker.name,
                                                   "category": sneaker.category,
-                                                  "sizes": sneaker.category,
+                                                  "sizes":
+                                                      productNotifier.sizes,
                                                   "imageUrl":
                                                       sneaker.imageUrl[0],
                                                   "price": sneaker.price,

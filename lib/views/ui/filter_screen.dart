@@ -1,5 +1,5 @@
 import '../../utils/exports.dart';
-import '../components/category_btn.dart';
+import '../components/shared/category_btn.dart';
 import '../components/shared/custom_spacer.dart';
 
 List<String> brands = [

@@ -144,7 +144,6 @@ Future<dynamic> filter(BuildContext context) {
                               );
                             })),
                       )
-                      // const CategoryButton()
                     ],
                   ),
                 )

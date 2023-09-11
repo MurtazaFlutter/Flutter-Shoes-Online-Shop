@@ -1,5 +1,5 @@
-import '../../../controllers/product_notifier.dart';
-import '../../../utils/exports.dart';
+import '../../../../controllers/product_notifier.dart';
+import '../../../../utils/exports.dart';
 
 class ProductImages extends StatelessWidget {
   const ProductImages({

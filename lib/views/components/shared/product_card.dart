@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:provider/provider.dart';
-import '../../../models/shoes_model.dart';
-import 'app_style.dart';
+import 'package:online_shop/utils/exports.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key});
@@ -37,7 +32,8 @@ class ProductCard extends StatelessWidget {
                     height: 150.h,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(product.imageUrl[0]))),
+                            image: CachedNetworkImageProvider(
+                                product.imageUrl[0]))),
                   ),
                   Positioned(
                       top: 12.h,

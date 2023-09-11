@@ -116,10 +116,9 @@ class _ProductByCategoryState extends State<ProductByCategory>
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: TabBarView(controller: _tabController, children: [
-                  //const StaggeredTile(),
-                  LatestShoes(male: _male),
-                  LatestShoes(male: _female),
-                  LatestShoes(male: _kids),
+                  LatestShoes(sneakers: _male),
+                  LatestShoes(sneakers: _female),
+                  LatestShoes(sneakers: _kids),
                 ]),
               ),
             )

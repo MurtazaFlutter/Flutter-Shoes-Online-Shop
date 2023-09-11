@@ -2,6 +2,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:online_shop/controllers/product_notifier.dart';
 import 'package:online_shop/utils/exports.dart';
 
+import '../components/shared/product_images.dart';
+
 class ProductDetailPage extends StatefulWidget {
   final String category;
   final String id;
@@ -84,74 +86,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.5,
                               width: MediaQuery.of(context).size.width,
-                              child: PageView.builder(
-                                scrollDirection: Axis.horizontal,
-                                controller: _pageController,
-                                itemCount: sneaker!.imageUrl.length,
-                                onPageChanged: (page) {
-                                  productNotifier.activePage = page;
-                                },
-                                itemBuilder: ((context, index) {
-                                  return Stack(
-                                    children: [
-                                      Container(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.39,
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        color: Colors.grey.shade300,
-                                        child: CachedNetworkImage(
-                                          imageUrl: sneaker.imageUrl[index],
-                                          fit: BoxFit.contain,
-                                        ),
-                                      ),
-                                      Positioned(
-                                        height: 20,
-                                        top:
-                                            MediaQuery.of(context).size.height *
-                                                0.1,
-                                        right: 20,
-                                        child: const Icon(
-                                          AntDesign.hearto,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      Positioned(
-                                        bottom: 0,
-                                        right: 0,
-                                        left: 0,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.3,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: List<Widget>.generate(
-                                            sneaker.imageUrl.length,
-                                            (index) => Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 4),
-                                              child: CircleAvatar(
-                                                backgroundColor: productNotifier
-                                                            .activePage !=
-                                                        index
-                                                    ? Colors.grey
-                                                    : Colors.black,
-                                                radius: 5,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                }),
+                              child: ProductImages(
+                                pageController: _pageController,
+                                sneaker: sneaker,
+                                productNotifier: productNotifier,
                               ),
                             ),
-                            SizedBox(
-                              height: 20.h,
+                            const SizedBox(
+                              height: 20,
                             ),
                             Positioned(
                               bottom: 30,
@@ -171,7 +113,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          sneaker.name,
+                                          sneaker!.name,
                                           style: appStyle(20.sp, Colors.black,
                                               FontWeight.bold, 1),
                                         ),

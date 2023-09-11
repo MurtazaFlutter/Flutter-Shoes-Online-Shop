@@ -3,15 +3,15 @@ import '../../../utils/exports.dart';
 class LatestShoes extends StatelessWidget {
   const LatestShoes({
     super.key,
-    required Future<List<Sneakers>> male,
-  }) : _male = male;
+    required Future<List<Sneakers>> sneakers,
+  }) : _sneakers = sneakers;
 
-  final Future<List<Sneakers>> _male;
+  final Future<List<Sneakers>> _sneakers;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Sneakers>>(
-        future: _male,
+        future: _sneakers,
         builder: ((context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();

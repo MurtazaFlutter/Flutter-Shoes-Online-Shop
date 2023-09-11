@@ -1,8 +1,9 @@
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:online_shop/controllers/product_notifier.dart';
 import 'package:online_shop/utils/exports.dart';
-
+import 'components/checkout_btn.dart';
 import 'components/product_images.dart';
+import 'components/select_size.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final String category;
@@ -204,93 +205,54 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         const SizedBox(
                                           height: 20,
                                         ),
-                                        Column(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "Select sizes",
-                                                  style: appStyle(
-                                                      20,
-                                                      Colors.black,
-                                                      FontWeight.w600,
-                                                      1),
-                                                ),
-                                                const SizedBox(
-                                                  width: 20,
-                                                ),
-                                                Text(
-                                                  "View size guide",
-                                                  style: appStyle(
-                                                      20,
-                                                      Colors.grey,
-                                                      FontWeight.w600,
-                                                      1),
-                                                ),
-                                              ],
+                                        SelectSize(
+                                          productNotifier: productNotifier,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        const Divider(
+                                          indent: 10,
+                                          endIndent: 10,
+                                          color: Colors.black,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.8,
+                                          child: Text(
+                                            sneaker.title,
+                                            style: appStyle(26, Colors.black,
+                                                FontWeight.w700, 1),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          sneaker.description,
+                                          textAlign: TextAlign.justify,
+                                          maxLines: 4,
+                                          style: appStyle(14, Colors.black,
+                                              FontWeight.normal, 1),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 12),
+                                            child: CheckOutButton(
+                                              label: 'Add to bag',
+                                              onTap: () {},
                                             ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            SizedBox(
-                                              height: 40,
-                                              child: ListView.builder(
-                                                  itemCount: productNotifier
-                                                      .shoesSizes.length,
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  padding: EdgeInsets.zero,
-                                                  itemBuilder:
-                                                      ((context, index) {
-                                                    final sizes =
-                                                        productNotifier
-                                                            .shoesSizes[index];
-                                                    return Padding(
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                          horizontal: 8.0),
-                                                      child: ChoiceChip(
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        60)),
-                                                        side: const BorderSide(
-                                                            color: Colors.black,
-                                                            width: 1,
-                                                            style: BorderStyle
-                                                                .solid),
-                                                        disabledColor:
-                                                            Colors.white,
-                                                        label: Text(
-                                                          productNotifier
-                                                                  .shoesSizes[
-                                                              index]['size'],
-                                                          style: appStyle(
-                                                              18,
-                                                              sizes['isSelected']
-                                                                  ? Colors.white
-                                                                  : Colors
-                                                                      .black,
-                                                              FontWeight.w500,
-                                                              1),
-                                                        ),
-                                                        selectedColor:
-                                                            Colors.black,
-                                                        selected: productNotifier
-                                                                    .shoesSizes[
-                                                                index]
-                                                            ['isSelected'],
-                                                        onSelected: (newState) {
-                                                          productNotifier
-                                                              .toggleCheck(
-                                                                  index);
-                                                        },
-                                                      ),
-                                                    );
-                                                  })),
-                                            )
-                                          ],
+                                          ),
                                         )
                                       ],
                                     ),

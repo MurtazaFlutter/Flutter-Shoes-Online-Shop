@@ -1,8 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:online_shop/controllers/fav_notifier.dart';
 import 'package:online_shop/utils/exports.dart';
 import 'package:online_shop/views/ui/fav/favourite_screen.dart';
-
-import '../../../models/consts.dart';
 
 class ProductCard extends StatefulWidget {
   const ProductCard({super.key});
@@ -12,31 +11,11 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-  final _favBox = Hive.box("fav_box");
-
-  Future<void> _createFav(Map<String, dynamic> addFav) async {
-    await _favBox.add(addFav);
-    getFavorites();
-  }
-
-  getFavorites() {
-    final favData = _favBox.keys.map((key) {
-      final item = _favBox.get(key);
-
-      return {
-        "key": key,
-        "id": "id",
-      };
-    }).toList();
-
-    favor = favData.toList();
-    ids = favor.map((item) => item['id']).toList();
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Sneakers>(context);
+    final product = Provider.of<Sneakers>(context, listen: true);
+    final fav = Provider.of<FavoriteNotifier>(context, listen: true);
+    fav.getFavorites();
     bool selected = true;
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 0, 20, 0),
@@ -69,29 +48,32 @@ class _ProductCardState extends State<ProductCard> {
                   Positioned(
                       top: 12.h,
                       right: 12.w,
-                      child: InkWell(
-                        onTap: () async {
-                          if (ids.contains(product.id)) {
-                            print(" product id ${product.id}");
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: ((context) =>
-                                        const FavoritesScreen())));
-                          } else {
-                            _createFav({
-                              "id": product.id,
-                              "name": product.name,
-                              "category": product.category,
-                              "price": product.price,
-                              "image": product.imageUrl
-                            });
-                          }
-                        },
-                        child: ids.contains(product.id)
-                            ? const Icon(AntDesign.heart)
-                            : const Icon(AntDesign.hearto),
-                      )),
+                      child: Consumer<FavoriteNotifier>(
+                          builder: (context, fav, chld) {
+                        return InkWell(
+                          onTap: () async {
+                            if (fav.ids.contains(product.id)) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          const FavoritesScreen())));
+                            } else {
+                              fav.createFav({
+                                "id": product.id,
+                                "name": product.name,
+                                "category": product.category,
+                                "price": product.price,
+                                "image": product.imageUrl[0]
+                              });
+                            }
+                            setState(() {});
+                          },
+                          child: fav.ids.contains(product.id)
+                              ? const Icon(AntDesign.heart)
+                              : const Icon(AntDesign.hearto),
+                        );
+                      })),
                 ],
               ),
               Padding(

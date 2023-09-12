@@ -39,17 +39,14 @@ class BottomBar extends StatelessWidget {
                   },
                   iconData: mainScreenNotifier.pageIndex == 1
                       ? Ionicons.search
-                      : Ionicons.search_outline
-
-                  // iconData: Ionicons.search,
-                  ),
+                      : Ionicons.search_outline),
               BottomNavBarIcons(
                   onTap: () {
                     mainScreenNotifier.pageIndex = 2;
                   },
                   iconData: mainScreenNotifier.pageIndex == 2
-                      ? Ionicons.add
-                      : Ionicons.add_circle_outline),
+                      ? Ionicons.heart
+                      : Ionicons.heart_circle_outline),
               BottomNavBarIcons(
                   onTap: () {
                     mainScreenNotifier.pageIndex = 3;

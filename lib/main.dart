@@ -31,8 +31,10 @@ class MyApp extends StatelessWidget {
       designSize: ScreenUtil.defaultSize,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(),
+        title: 'Flutter Shop App',
+        theme: ThemeData(
+          scaffoldBackgroundColor: const Color(0xFFE3E2E2),
+        ),
         home: MainScreen(),
       ),
     );

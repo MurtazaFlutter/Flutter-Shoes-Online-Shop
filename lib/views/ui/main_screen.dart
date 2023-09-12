@@ -4,7 +4,6 @@ import 'package:online_shop/views/ui/cartpage/cart_page.dart';
 import 'package:online_shop/views/ui/profile.dart';
 import 'package:provider/provider.dart';
 import '../components/shared/bottom_nav.dart';
-import 'cart_screen.dart';
 import 'home_screen.dart';
 import 'searchscreen.dart';
 
@@ -15,7 +14,7 @@ class MainScreen extends StatelessWidget {
     const HomeScreen(),
     const SearchScreen(),
     const HomeScreen(),
-    const CartPage(),
+    CartPage(),
     const ProfileScreen()
   ];
   @override
@@ -23,6 +22,7 @@ class MainScreen extends StatelessWidget {
     return Consumer<MainScreenNotifier>(
         builder: (context, mainScreenNotifier, child) {
       return Scaffold(
+        backgroundColor: const Color(0xFFE3E2E2),
         body: pageList[mainScreenNotifier.pageIndex],
         bottomNavigationBar: const BottomBar(),
       );

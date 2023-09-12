@@ -128,7 +128,7 @@ class CartPage extends StatelessWidget {
                                                   FontWeight.bold, 1),
                                             ),
                                             const SizedBox(
-                                              height: 5,
+                                              height: 10,
                                             ),
                                             Row(
                                               children: [
@@ -155,7 +155,7 @@ class CartPage extends StatelessWidget {
                                                   width: 20,
                                                 ),
                                                 Text(
-                                                  data["sizes"].toString(),
+                                                  "${data['sizes']}",
                                                   style: appStyle(
                                                       16,
                                                       Colors.grey,

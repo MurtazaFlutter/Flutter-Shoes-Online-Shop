@@ -4,6 +4,7 @@ import 'package:online_shop/views/ui/cartpage/cart_page.dart';
 import 'package:online_shop/views/ui/profile.dart';
 import 'package:provider/provider.dart';
 import '../components/shared/bottom_nav.dart';
+import 'fav/favourite_screen.dart';
 import 'home_screen.dart';
 import 'searchscreen.dart';
 
@@ -13,7 +14,7 @@ class MainScreen extends StatelessWidget {
   final List<Widget> pageList = [
     const HomeScreen(),
     const SearchScreen(),
-    const HomeScreen(),
+    const FavoritesScreen(),
     CartPage(),
     const ProfileScreen()
   ];

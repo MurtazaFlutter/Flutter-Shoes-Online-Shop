@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import '../models/shoes_model.dart';
+import '../oldModel/shoes_model.dart';
 
 class Helper {
   Future<String> loadJsonData() async {

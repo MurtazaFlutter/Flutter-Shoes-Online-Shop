@@ -6,7 +6,7 @@ import 'package:online_shop/views/components/shared/app_style.dart';
 import 'package:online_shop/views/ui/product_detail/product_detail_page.dart';
 import 'package:online_shop/views/ui/productby_category.dart';
 import 'package:provider/provider.dart';
-import '../../../models/shoes_model.dart';
+import '../../../oldModel/shoes_model.dart';
 import 'latest_shoes.dart';
 import 'product_card.dart';
 

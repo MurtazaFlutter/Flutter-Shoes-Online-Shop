@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:online_shop/utils/exports.dart';
 import 'package:online_shop/views/ui/main_screen.dart';
-import '../../../models/consts.dart';
+import '../../../oldModel/consts.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});

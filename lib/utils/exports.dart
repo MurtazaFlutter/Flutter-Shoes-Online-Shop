@@ -9,5 +9,4 @@ export 'package:online_shop/services/helper.dart';
 export 'package:online_shop/views/components/shared/latest_shoe.dart';
 export '../../utils/exports.dart';
 export 'package:online_shop/views/components/shared/app_style.dart';
-
 export 'package:cached_network_image/cached_network_image.dart';

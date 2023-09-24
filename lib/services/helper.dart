@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:online_shop/services/config.dart';
 import '../oldModel/shoes_model.dart';
+import 'package:http/http.dart' as http;
 
 class Helper {
+  static var client = http.Client();
   Future<String> loadJsonData() async {
     return await rootBundle.loadString('assets/json/men_shoes.json');
   }
@@ -13,27 +16,50 @@ class Helper {
   }
 
   Future<List<Sneakers>> getMaleSneakers() async {
-    final data = await rootBundle.loadString("assets/json/men_shoes.json");
+    // final data = await rootBundle.loadString("assets/json/men_shoes.json");
 
-    final maleList = sneakersFromJson(data);
+    var url = Uri.http(Config.apiUrl, Config.sneakers);
 
-    return maleList;
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final maleList = sneakersFromJson(response.body);
+
+      final male = maleList.where((male) => male.category == 'Men\'s Running');
+      return male.toList();
+    } else {
+      throw Exception("Failed");
+    }
   }
 
   Future<List<Sneakers>> getFemaleSneakers() async {
-    final data = await rootBundle.loadString("assets/json/women_shoes.json");
+    var url = Uri.http(Config.apiUrl, Config.sneakers);
 
-    final femaleList = sneakersFromJson(data);
+    var response = await http.get(url);
 
-    return femaleList;
+    if (response.statusCode == 200) {
+      final femaleList = sneakersFromJson(response.body);
+
+      final female =
+          femaleList.where((female) => female.category == 'Women\'s shoes');
+      return female.toList();
+    } else {
+      throw Exception("Failed");
+    }
   }
 
   Future<List<Sneakers>> getKidsShoes() async {
-    final data = await rootBundle.loadString("assets/json/kids_shoes.json");
+    var url = Uri.http(Config.apiUrl, Config.sneakers);
+    var response = await http.get(url);
 
-    final kidsList = sneakersFromJson(data);
+    if (response.statusCode == 200) {
+      final kidsList = sneakersFromJson(response.body);
 
-    return kidsList;
+      final kids = kidsList.where((kids) => kids.category == 'Kid\'s Shoes');
+      return kids.toList();
+    } else {
+      throw Exception("Failed");
+    }
   }
 
   // Single Male

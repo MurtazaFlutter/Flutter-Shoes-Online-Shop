@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: ScreenUtil.defaultSize,
+      designSize: const Size(325, 825),
+      minTextAdapt: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Shop App',

@@ -1,4 +1,3 @@
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:online_shop/controllers/fav_notifier.dart';
 import 'package:online_shop/utils/exports.dart';
 import 'package:online_shop/views/ui/fav/favourite_screen.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../components/shared/app_style.dart';
 
 class SearchScreen extends StatefulWidget {

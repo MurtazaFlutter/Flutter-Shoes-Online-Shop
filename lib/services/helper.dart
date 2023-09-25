@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:online_shop/utils/exports.dart';
 
 class Helper {
+  var client = http.Client();
   Future<String> loadJsonData() async {
     return await rootBundle.loadString('assets/json/men_shoes.json');
   }
@@ -19,7 +20,7 @@ class Helper {
     var url = Uri.http(Config.apiUrl, Config.sneakers);
     print(url);
 
-    var response = await http.get(url);
+    var response = await client.get(url);
 
     if (response.statusCode == 200) {
       final maleList = sneakersFromJson(response.body);
@@ -34,10 +35,14 @@ class Helper {
   Future<List<Sneakers>> getFemaleSneakers() async {
     var url = Uri.http(Config.apiUrl, Config.sneakers);
 
-    var response = await http.get(url);
+    var response = await client.get(url);
 
     if (response.statusCode == 200) {
       final femaleList = sneakersFromJson(response.body);
+
+      print("Response Status Code: ${response.statusCode}");
+      print("Response Body: ${response.body}");
+
       debugPrint("female model $femaleList");
 
       final female =
@@ -50,7 +55,7 @@ class Helper {
 
   Future<List<Sneakers>> getKidsShoes() async {
     var url = Uri.http(Config.apiUrl, Config.sneakers);
-    var response = await http.get(url);
+    var response = await client.get(url);
 
     if (response.statusCode == 200) {
       final kidsList = sneakersFromJson(response.body);
@@ -93,5 +98,20 @@ class Helper {
     final sneaker = kidsList.firstWhere((sneaker) => sneaker.id == id);
 
     return sneaker;
+  }
+
+  // search product
+  Future<List<Sneakers>> search(String searchQuery) async {
+    var url = Uri.http(Config.apiUrl, "${Config.search}$searchQuery");
+
+    var response = await client.get(url);
+
+    if (response.statusCode == 200) {
+      final results = sneakersFromJson(response.body);
+
+      return results;
+    } else {
+      throw Exception("Failed");
+    }
   }
 }

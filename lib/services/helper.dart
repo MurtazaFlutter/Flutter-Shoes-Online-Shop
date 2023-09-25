@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:online_shop/models/sneaker_model.dart';
 import 'package:online_shop/services/config.dart';
-import '../oldModel/shoes_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:online_shop/utils/exports.dart';
 
 class Helper {
-  static var client = http.Client();
   Future<String> loadJsonData() async {
     return await rootBundle.loadString('assets/json/men_shoes.json');
   }
@@ -16,9 +16,8 @@ class Helper {
   }
 
   Future<List<Sneakers>> getMaleSneakers() async {
-    // final data = await rootBundle.loadString("assets/json/men_shoes.json");
-
     var url = Uri.http(Config.apiUrl, Config.sneakers);
+    print(url);
 
     var response = await http.get(url);
 
@@ -39,9 +38,10 @@ class Helper {
 
     if (response.statusCode == 200) {
       final femaleList = sneakersFromJson(response.body);
+      debugPrint("female model $femaleList");
 
       final female =
-          femaleList.where((female) => female.category == 'Women\'s shoes');
+          femaleList.where((female) => female.category == 'Women\'s Running');
       return female.toList();
     } else {
       throw Exception("Failed");
@@ -55,7 +55,7 @@ class Helper {
     if (response.statusCode == 200) {
       final kidsList = sneakersFromJson(response.body);
 
-      final kids = kidsList.where((kids) => kids.category == 'Kid\'s Shoes');
+      final kids = kidsList.where((kids) => kids.category == 'Kid\'s Running');
       return kids.toList();
     } else {
       throw Exception("Failed");

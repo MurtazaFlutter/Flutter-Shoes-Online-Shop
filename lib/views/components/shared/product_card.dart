@@ -1,4 +1,5 @@
 import 'package:online_shop/controllers/fav_notifier.dart';
+import 'package:online_shop/models/sneaker_model.dart';
 import 'package:online_shop/utils/exports.dart';
 import 'package:online_shop/views/ui/fav/favourite_screen.dart';
 

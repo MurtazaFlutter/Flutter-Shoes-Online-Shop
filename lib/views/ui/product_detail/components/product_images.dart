@@ -1,5 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-
+import 'package:online_shop/models/sneaker_model.dart';
 import '../../../../controllers/product_notifier.dart';
 import '../../../../oldModel/consts.dart';
 import '../../../../utils/exports.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:online_shop/controllers/product_notifier.dart';
+import 'package:online_shop/models/sneaker_model.dart';
 import 'package:online_shop/utils/exports.dart';
 import 'components/checkout_btn.dart';
 import 'components/product_images.dart';

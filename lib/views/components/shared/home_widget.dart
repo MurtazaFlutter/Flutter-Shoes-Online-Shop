@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:online_shop/controllers/product_notifier.dart';
+import 'package:online_shop/models/sneaker_model.dart';
 import 'package:online_shop/views/components/shared/app_style.dart';
 import 'package:online_shop/views/ui/product_detail/product_detail_page.dart';
 import 'package:online_shop/views/ui/productby_category.dart';
 import 'package:provider/provider.dart';
-import '../../../oldModel/shoes_model.dart';
 import 'latest_shoes.dart';
 import 'product_card.dart';
 

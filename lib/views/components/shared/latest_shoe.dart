@@ -1,3 +1,4 @@
+import '../../../models/sneaker_model.dart';
 import '../../../utils/exports.dart';
 
 class LatestShoes extends StatelessWidget {

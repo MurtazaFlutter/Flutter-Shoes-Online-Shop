@@ -1,3 +1,5 @@
+import 'package:online_shop/models/sneaker_model.dart';
+
 import '../../../utils/exports.dart';
 
 class StaggeredTileWidget extends StatefulWidget {

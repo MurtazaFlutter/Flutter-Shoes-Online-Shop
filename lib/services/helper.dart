@@ -18,7 +18,6 @@ class Helper {
 
   Future<List<Sneakers>> getMaleSneakers() async {
     var url = Uri.http(Config.apiUrl, Config.sneakers);
-    print(url);
 
     var response = await client.get(url);
 
@@ -40,11 +39,6 @@ class Helper {
     if (response.statusCode == 200) {
       final femaleList = sneakersFromJson(response.body);
 
-      print("Response Status Code: ${response.statusCode}");
-      print("Response Body: ${response.body}");
-
-      debugPrint("female model $femaleList");
-
       final female =
           femaleList.where((female) => female.category == 'Women\'s Running');
       return female.toList();
@@ -60,7 +54,7 @@ class Helper {
     if (response.statusCode == 200) {
       final kidsList = sneakersFromJson(response.body);
 
-      final kids = kidsList.where((kids) => kids.category == 'Kid\'s Running');
+      final kids = kidsList.where((kids) => kids.category == 'Kids\' Running');
       return kids.toList();
     } else {
       throw Exception("Failed");

@@ -15,7 +15,7 @@ class LatestShoes extends StatelessWidget {
         future: _sneakers,
         builder: ((context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
+            return const CircularProgressIndicator.adaptive();
           } else if (snapshot.hasError) {
             return Text('error ${snapshot.hasError}');
           } else {

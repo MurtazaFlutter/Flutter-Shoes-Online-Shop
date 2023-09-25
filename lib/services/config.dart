@@ -1,5 +1,5 @@
 class Config {
-  static const apiUrl = "hocalhost:3005";
+  static const apiUrl = "192.168.214.205:3005";
   static const String loginUrl = "/api/login/";
   static const String signUpUrl = "/api/signup/";
   static const String getCartUrl = "/api/addToCart";

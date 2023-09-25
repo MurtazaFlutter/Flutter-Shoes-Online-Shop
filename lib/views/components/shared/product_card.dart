@@ -23,7 +23,7 @@ class _ProductCardState extends State<ProductCard> {
         borderRadius: BorderRadius.circular(16.r),
         child: Container(
           height: MediaQuery.of(context).size.height,
-          width: 220.w,
+          width: 190.w,
           decoration: const BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -35,6 +35,7 @@ class _ProductCardState extends State<ProductCard> {
             ],
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Stack(
                 children: [
@@ -43,10 +44,10 @@ class _ProductCardState extends State<ProductCard> {
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             image: CachedNetworkImageProvider(
-                                product.imageUrl[0]))),
+                      product.imageUrl[0],
+                    ))),
                   ),
                   Positioned(
-                      top: 12.h,
                       right: 12.w,
                       child: Consumer<FavoriteNotifier>(
                           builder: (context, fav, chld) {

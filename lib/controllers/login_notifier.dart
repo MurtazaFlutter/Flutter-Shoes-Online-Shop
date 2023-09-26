@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop/models/auth/login_model.dart';
+import 'package:online_shop/models/auth/signup_model.dart';
 import 'package:online_shop/services/auth_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,6 +25,13 @@ class LoginNotifier extends ChangeNotifier {
   bool get loginResponseBool => _loginResponseBool;
   set loginResponseBool(bool newState) {
     _loginResponseBool = newState;
+    notifyListeners();
+  }
+
+  bool _responseBool = false;
+  bool get responseBool => _responseBool;
+  set responseBool(bool newState) {
+    _responseBool = newState;
     notifyListeners();
   }
 
@@ -55,5 +63,11 @@ class LoginNotifier extends ChangeNotifier {
     preferences.remove('userId');
     preferences.setBool('isLogged', false);
     loggedIn = preferences.getBool('isLogged') ?? false;
+  }
+
+  Future<bool> registerUser(SignupModel model) async {
+    responseBool = await AuthHelper().signUp(model);
+
+    return responseBool;
   }
 }

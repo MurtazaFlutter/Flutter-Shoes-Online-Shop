@@ -33,7 +33,7 @@ class CustomTextField extends StatelessWidget {
               hintText: hintText,
               suffixIcon: suffixIcon,
               suffixIconColor: Colors.black26,
-              hintStyle: appStyle(14, Colors.grey, FontWeight.w500, 1),
+              hintStyle: appStyle(14, Colors.black, FontWeight.w500, 1),
               // contentPadding: EdgeInsets.only(left: 24),
               errorBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.zero,

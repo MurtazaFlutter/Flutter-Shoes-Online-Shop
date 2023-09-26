@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop/controllers/login_notifier.dart';
+import 'package:online_shop/models/auth/signup_model.dart';
 import 'package:online_shop/views/components/shared/custom_textfield.dart';
 import 'package:online_shop/views/ui/auth/Login_screen.dart';
 import '../../../utils/exports.dart';
@@ -107,6 +108,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: 40.h,
             ),
             GestureDetector(
+              onTap: () {
+                SignupModel model = SignupModel(
+                    username: username.text,
+                    email: email.text,
+                    password: password.text);
+                loginNotifier.registerUser(model).then((response) {
+                  if (response == true) {
+                    Navigator.push(
+                        context,
+                        (MaterialPageRoute(
+                            builder: ((context) => const LoginScreen()))));
+                  } else {
+                    print("Failed");
+                  }
+                });
+              },
               child: Container(
                 height: 55.h,
                 width: 300.w,

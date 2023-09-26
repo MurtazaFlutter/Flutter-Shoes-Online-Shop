@@ -40,7 +40,7 @@ class AuthHelper {
   Future<bool> signUp(SignupModel model) async {
     Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
-    var url = Uri.http(Config.apiUrl, Config.loginUrl);
+    var url = Uri.http(Config.apiUrl, Config.signUpUrl);
 
     var response =
         await client.post(url, headers: requestHeaders, body: model.toJson());

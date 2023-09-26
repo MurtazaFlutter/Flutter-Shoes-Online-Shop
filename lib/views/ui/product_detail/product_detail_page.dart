@@ -1,8 +1,10 @@
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:online_shop/controllers/login_notifier.dart';
 import 'package:online_shop/controllers/product_notifier.dart';
 import 'package:online_shop/models/sneaker_model.dart';
 import 'package:online_shop/utils/exports.dart';
+import '../auth/Login_screen.dart';
 import 'components/checkout_btn.dart';
 import 'components/product_images.dart';
 import 'components/select_size.dart';
@@ -23,15 +25,15 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   late Future<Sneakers> _sneakers;
 
-  void getShoes() {
-    if (widget.category == "Men's Running") {
-      _sneakers = Helper().getMaleById(widget.id);
-    } else if (widget.category == "Women's Running") {
-      _sneakers = Helper().getFemaleById(widget.id);
-    } else {
-      _sneakers = Helper().getKidsById(widget.id);
-    }
-  }
+  // void getShoes() {
+  //   if (widget.category == "Men's Running") {
+  //     _sneakers = Helper().getMaleById(widget.id);
+  //   } else if (widget.category == "Women's Running") {
+  //     _sneakers = Helper().getFemaleById(widget.id);
+  //   } else {
+  //     _sneakers = Helper().getKidsById(widget.id);
+  //   }
+  // }
 
   // Add to Hive Box
   Future<void> _createCart(Map<String, dynamic> newCart) async {
@@ -41,11 +43,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   void initState() {
     super.initState();
-    getShoes();
+    // getShoes();
   }
 
   @override
   Widget build(BuildContext context) {
+    final loginNotifier = Provider.of<LoginNotifier>(context);
     return Scaffold(
       body: FutureBuilder<Sneakers>(
         future: _sneakers,
@@ -257,19 +260,15 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                             child: CheckOutButton(
                                               label: 'Add to bag',
                                               onTap: () async {
-                                                _createCart({
-                                                  "id": sneaker.id,
-                                                  "name": sneaker.name,
-                                                  "category": sneaker.category,
-                                                  "sizes":
-                                                      productNotifier.sizes,
-                                                  "imageUrl":
-                                                      sneaker.imageUrl[0],
-                                                  "price": sneaker.price,
-                                                  "qty": 1
-                                                });
-                                                productNotifier.sizes.clear();
-                                                Navigator.pop(context);
+                                                if (loginNotifier.loggedIn ==
+                                                    true) {
+                                                } else {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const LoginScreen()));
+                                                }
                                               },
                                             ),
                                           ),

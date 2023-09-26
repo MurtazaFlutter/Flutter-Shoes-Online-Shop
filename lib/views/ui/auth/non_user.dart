@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop/utils/exports.dart';
 import 'package:online_shop/views/components/shared/reusable_text.dart';
-import '../components/shared/app_style.dart';
-import 'auth/components/custom_app_bar.dart';
+import 'package:online_shop/views/ui/auth/Login_screen.dart';
+import 'package:svg_flutter/svg.dart';
+import 'components/custom_app_bar.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class NonUser extends StatelessWidget {
+  const NonUser({super.key});
 
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,28 +42,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             const SizedBox(
                               width: 8,
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ReusableText(
-                                    text: "Username",
-                                    style: appStyle(12.sp, Colors.grey,
-                                        FontWeight.normal, 1)),
-                                ReusableText(
-                                    text: "example@gmail.com",
-                                    style: appStyle(12.sp, Colors.grey,
-                                        FontWeight.normal, 1)),
-                              ],
-                            ),
+                            ReusableText(
+                                text: "Hello, Please Login into Your Account",
+                                style: appStyle(
+                                    12.sp, Colors.grey, FontWeight.normal, 1)),
                           ],
                         ),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Feather.edit,
-                              size: 18,
-                            )),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginScreen()));
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 5),
+                            width: 50.w,
+                            height: 30.h,
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Center(
+                              child: ReusableText(
+                                  text: "Login",
+                                  style: appStyle(16.sp, Colors.white,
+                                      FontWeight.normal, 1)),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   )

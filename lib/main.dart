@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_shop/controllers/fav_notifier.dart';
+import 'package:online_shop/controllers/login_notifier.dart';
 import 'package:online_shop/controllers/main_screen_notifier.dart';
 import 'package:online_shop/controllers/product_notifier.dart';
 import 'package:provider/provider.dart';
@@ -14,15 +15,10 @@ void main() async {
   await Hive.openBox('cart_box');
   await Hive.openBox('fav_box');
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-      create: ((context) => MainScreenNotifier()),
-    ),
-    ChangeNotifierProvider(
-      create: ((context) => ProductNotifier()),
-    ),
-    ChangeNotifierProvider(
-      create: ((context) => FavoriteNotifier()),
-    ),
+    ChangeNotifierProvider(create: ((context) => MainScreenNotifier())),
+    ChangeNotifierProvider(create: ((context) => ProductNotifier())),
+    ChangeNotifierProvider(create: ((context) => FavoriteNotifier())),
+    ChangeNotifierProvider(create: ((context) => LoginNotifier())),
   ], child: const MyApp()));
 }
 

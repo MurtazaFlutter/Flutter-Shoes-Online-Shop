@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_shop/controllers/login_notifier.dart';
 import 'package:online_shop/utils/exports.dart';
 import 'package:online_shop/views/components/shared/custom_textfield.dart';
 import 'package:online_shop/views/components/shared/reusable_text.dart';
@@ -11,6 +12,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController email = TextEditingController();
     final TextEditingController password = TextEditingController();
+    var loginNotifier = Provider.of<LoginNotifier>(context);
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -46,7 +48,13 @@ class LoginScreen extends StatelessWidget {
               height: 15.h,
             ),
             CustomTextField(
-                suffixIcon: const Icon(Icons.visibility),
+                suffixIcon: IconButton(
+                    onPressed: () {
+                      loginNotifier.isObsecure = !loginNotifier.isObsecure;
+                    },
+                    icon: loginNotifier.isObsecure
+                        ? const Icon((Icons.visibility_off))
+                        : const Icon(Icons.visibility)),
                 validator: (p0) {
                   return null;
                 },

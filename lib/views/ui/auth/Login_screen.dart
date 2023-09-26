@@ -48,6 +48,7 @@ class LoginScreen extends StatelessWidget {
               height: 15.h,
             ),
             CustomTextField(
+                obscureText: loginNotifier.isObsecure,
                 suffixIcon: IconButton(
                     onPressed: () {
                       loginNotifier.isObsecure = !loginNotifier.isObsecure;

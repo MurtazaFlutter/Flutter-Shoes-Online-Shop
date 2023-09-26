@@ -5,14 +5,28 @@ import 'package:online_shop/views/ui/auth/Login_screen.dart';
 import '../../../utils/exports.dart';
 import '../../components/shared/reusable_text.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+final TextEditingController username = TextEditingController();
+final TextEditingController email = TextEditingController();
+final TextEditingController password = TextEditingController();
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  @override
+  void dispose() {
+    username;
+    email;
+    password;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController username = TextEditingController();
-    final TextEditingController email = TextEditingController();
-    final TextEditingController password = TextEditingController();
     var loginNotifier = Provider.of<LoginNotifier>(context);
     return Scaffold(
       backgroundColor: Colors.black,

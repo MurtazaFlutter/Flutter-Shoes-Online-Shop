@@ -5,13 +5,26 @@ import 'package:online_shop/views/components/shared/custom_textfield.dart';
 import 'package:online_shop/views/components/shared/reusable_text.dart';
 import 'package:online_shop/views/ui/auth/register.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+final TextEditingController email = TextEditingController();
+final TextEditingController password = TextEditingController();
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
+  void dispose() {
+    email;
+    password;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController email = TextEditingController();
-    final TextEditingController password = TextEditingController();
     var loginNotifier = Provider.of<LoginNotifier>(context);
     return Scaffold(
       backgroundColor: Colors.black,

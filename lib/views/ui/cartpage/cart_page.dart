@@ -1,33 +1,30 @@
 import 'package:hive/hive.dart';
+import 'package:online_shop/models/cart/get_products.dart';
+import 'package:online_shop/services/cart_helper.dart';
 import 'package:online_shop/utils/exports.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:online_shop/views/ui/product_detail/components/checkout_btn.dart';
 
-class CartPage extends StatelessWidget {
-  CartPage({super.key});
+class CartPage extends StatefulWidget {
+  const CartPage({super.key});
 
-  final _cartBox = Hive.box("cart_box");
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  List<dynamic> cart = [];
+
+  late Future<List<Product>> _cartList;
+
+  @override
+  void initState() {
+    super.initState();
+    _cartList = CartHelper().getCart();
+  }
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> cart = [];
-    final cartData = _cartBox.keys.map(
-      (key) {
-        final item = _cartBox.get(key);
-        return {
-          "key": key,
-          "id": item['id'],
-          "category": item['category'],
-          "name": item['name'],
-          "imageUrl": item["imageUrl"],
-          "price": item["price"],
-          "qty": item["qty"],
-          "sizes": item["sizes"]
-        };
-      },
-    ).toList();
-
-    cart = cartData.reversed.toList();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(12),

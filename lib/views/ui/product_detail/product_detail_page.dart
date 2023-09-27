@@ -2,7 +2,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:online_shop/controllers/login_notifier.dart';
 import 'package:online_shop/controllers/product_notifier.dart';
+import 'package:online_shop/models/cart/add_to_cart.dart';
+import 'package:online_shop/models/cart/get_products.dart';
 import 'package:online_shop/models/sneaker_model.dart';
+import 'package:online_shop/services/cart_helper.dart';
 import 'package:online_shop/utils/exports.dart';
 import '../auth/Login_screen.dart';
 import 'components/checkout_btn.dart';
@@ -10,10 +13,12 @@ import 'components/product_images.dart';
 import 'components/select_size.dart';
 
 class ProductDetailPage extends StatefulWidget {
-  final String category;
-  final String id;
-  const ProductDetailPage(
-      {super.key, required this.category, required this.id});
+  final Sneakers sneakers;
+
+  const ProductDetailPage({
+    super.key,
+    required this.sneakers,
+  });
 
   @override
   State<ProductDetailPage> createState() => _ProductDetailPageState();
@@ -21,7 +26,6 @@ class ProductDetailPage extends StatefulWidget {
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
   final PageController _pageController = PageController();
-  final _cartBox = Hive.box('cart_box');
 
   late Future<Sneakers> _sneakers;
 
@@ -35,15 +39,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   //   }
   // }
 
-  // Add to Hive Box
-  Future<void> _createCart(Map<String, dynamic> newCart) async {
-    await _cartBox.add(newCart);
-  }
-
   @override
   void initState() {
     super.initState();
-    // getShoes();
   }
 
   @override
@@ -262,6 +260,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                               onTap: () async {
                                                 if (loginNotifier.loggedIn ==
                                                     true) {
+                                                  AddToCart cart = AddToCart(
+                                                      cartItem: sneaker.id,
+                                                      quantity: 1);
+                                                  CartHelper().addToCart(cart);
                                                 } else {
                                                   Navigator.push(
                                                       context,

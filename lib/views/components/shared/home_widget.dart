@@ -54,8 +54,8 @@ class HomeWidget extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: ((context) => ProductDetailPage(
-                                      category: sneaker.category,
-                                      id: sneaker.id))),
+                                        sneakers: sneaker,
+                                      ))),
                             );
                           },
                           child: ChangeNotifierProvider.value(
@@ -113,7 +113,7 @@ class HomeWidget extends StatelessWidget {
             future: _male,
             builder: ((context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
+                return const CircularProgressIndicator.adaptive();
               } else if (snapshot.hasError) {
                 return Text('error ${snapshot.hasError}');
               } else {

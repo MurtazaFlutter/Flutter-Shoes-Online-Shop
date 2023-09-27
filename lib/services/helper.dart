@@ -3,7 +3,6 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:online_shop/models/sneaker_model.dart';
 import 'package:online_shop/services/config.dart';
 import 'package:http/http.dart' as http;
-import 'package:online_shop/utils/exports.dart';
 
 class Helper {
   var client = http.Client();

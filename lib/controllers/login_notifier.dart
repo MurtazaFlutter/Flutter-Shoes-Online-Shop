@@ -70,4 +70,10 @@ class LoginNotifier extends ChangeNotifier {
 
     return responseBool;
   }
+
+  getPrefs() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    loggedIn = preferences.getBool("isLogged") ?? false;
+  }
 }

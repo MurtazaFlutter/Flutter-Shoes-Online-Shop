@@ -43,7 +43,7 @@ class AuthHelper {
     var url = Uri.http(Config.apiUrl, Config.signUpUrl);
 
     var response =
-        await client.post(url, headers: requestHeaders, body: model.toJson());
+        await client.post(url, body: model.toJson(), headers: requestHeaders);
 
     if (response.statusCode == 201) {
       return true;

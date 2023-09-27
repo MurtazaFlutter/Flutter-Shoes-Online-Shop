@@ -1,3 +1,4 @@
+import 'package:online_shop/controllers/login_notifier.dart';
 import 'package:online_shop/models/sneaker_model.dart';
 import 'package:online_shop/views/components/shared/home_widget.dart';
 import '../../utils/exports.dart';
@@ -39,6 +40,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    var loginNotifier = Provider.of<LoginNotifier>(context);
+    loginNotifier.getPrefs();
     return Scaffold(
         backgroundColor: const Color(0xFFE2E2E2),
         body: SizedBox(

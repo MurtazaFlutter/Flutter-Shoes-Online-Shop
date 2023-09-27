@@ -34,8 +34,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Shop App',
         theme: ThemeData(
+          // appBarTheme:
+          //     const AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
           useMaterial3: true,
-          scaffoldBackgroundColor: const Color(0xFFE3E2E2),
+          // scaffoldBackgroundColor: const Color(0xFFE3E2E2),
         ),
         home: MainScreen(),
       ),

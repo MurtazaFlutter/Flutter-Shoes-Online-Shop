@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop/controllers/login_notifier.dart';
+import 'package:online_shop/services/auth_helper.dart';
 import 'package:online_shop/utils/exports.dart';
 import 'package:online_shop/views/components/shared/reusable_text.dart';
 import 'package:online_shop/views/components/shared/tiles_widget.dart';
@@ -41,36 +42,60 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    height: 35.h,
-                                    width: 35.w,
-                                    child: const CircleAvatar(
-                                      backgroundImage:
-                                          AssetImage('assets/images/user.jpeg'),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      ReusableText(
-                                          text: "Username",
-                                          style: appStyle(12.sp, Colors.grey,
-                                              FontWeight.normal, 1)),
-                                      ReusableText(
-                                          text: "example@gmail.com",
-                                          style: appStyle(12.sp, Colors.grey,
-                                              FontWeight.normal, 1)),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                              FutureBuilder(
+                                  future: AuthHelper().getUserProfile(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return const CircularProgressIndicator();
+                                    } else if (snapshot.hasError) {
+                                      return ReusableText(
+                                          text: "Error",
+                                          style: appStyle(12.sp, Colors.black,
+                                              FontWeight.w300, 1));
+                                    } else {
+                                      final userData = snapshot.data;
+
+                                      return Row(
+                                        children: [
+                                          SizedBox(
+                                            height: 35.h,
+                                            width: 35.w,
+                                            child: const CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  'assets/images/user.jpeg'),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              ReusableText(
+                                                  text:
+                                                      userData?.username ?? '',
+                                                  style: appStyle(
+                                                      12.sp,
+                                                      Colors.grey,
+                                                      FontWeight.normal,
+                                                      1)),
+                                              ReusableText(
+                                                  text: userData?.email ?? '',
+                                                  style: appStyle(
+                                                      12.sp,
+                                                      Colors.grey,
+                                                      FontWeight.normal,
+                                                      1)),
+                                            ],
+                                          ),
+                                        ],
+                                      );
+                                    }
+                                  }),
                               IconButton(
                                   onPressed: () {},
                                   icon: const Icon(

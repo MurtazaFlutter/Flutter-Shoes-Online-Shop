@@ -10,9 +10,9 @@ class CartHelper {
 
   Future<bool> addToCart(AddToCart cart) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString("token");
+    String? token = prefs.getString("Token");
     Map<String, String> requestHeaders = {
-      'Content-Type': 'application/json' "authorization: $token"
+      'Content-Type': 'application/json' "Token: $token"
     };
 
     var url = Uri.http(Config.apiUrl, Config.addToCartUrl);
@@ -28,16 +28,18 @@ class CartHelper {
 
   Future<List<Product>> getCart() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString("token");
+    String? token = prefs.getString("Token");
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'authorization': 'Bearer $token'
+      'Token': 'Bearer $token'
     };
     var url = Uri.http(Config.apiUrl, Config.getCartUrl);
 
     var response = await http.get(url, headers: requestHeaders);
 
     if (response.statusCode == 200) {
+      print("getting cart ${response.body}");
+      print("getting cart ${response.statusCode}");
       var jsonData = json.decode(response.body);
 
       List<Product> cart = [];

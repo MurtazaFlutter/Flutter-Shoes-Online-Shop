@@ -54,10 +54,10 @@ class AuthHelper {
 
   Future<ProfileRes> getUserProfile() async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
-    final token = preferences.getString('token');
+    final token = preferences.getString('Token');
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'authorization': 'Bearer $token'
+      'Token': 'Bearer $token'
     };
 
     var url = Uri.http(Config.apiUrl, Config.getUser);

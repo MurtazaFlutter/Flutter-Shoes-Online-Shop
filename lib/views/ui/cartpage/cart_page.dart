@@ -1,8 +1,10 @@
 import 'package:hive/hive.dart';
 import 'package:online_shop/controllers/cart_provider.dart';
+import 'package:online_shop/controllers/payment_notifier.dart';
 import 'package:online_shop/models/cart/get_products.dart';
 import 'package:online_shop/models/orders/orders_req.dart';
 import 'package:online_shop/services/cart_helper.dart';
+import 'package:online_shop/services/payment_helper.dart';
 import 'package:online_shop/utils/exports.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:online_shop/views/components/shared/reusable_text.dart';
@@ -31,6 +33,7 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartNotifier>(context);
+    final paymentNotifier = Provider.of<PaymentNotifier>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(12),
@@ -304,8 +307,11 @@ class _CartPageState extends State<CartPage> {
                             name: cartProvider.checkout[0].cartItem.name,
                             id: cartProvider.checkout[0].cartItem.id,
                             price: cartProvider.checkout[0].cartItem.price,
-                            cartQuantity: 1)
+                            cartQuantity: 1),
                       ]);
+                      PaymentHelper().payment(order).then((value) {
+                        paymentNotifier.setPaymentUrl = value;
+                      });
                     })
                 : const SizedBox.shrink(),
           ],

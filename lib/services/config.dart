@@ -6,8 +6,12 @@ class Config {
   static const String getCartUrl = "/api/getCart";
   static const String addToCartUrl = "/api/addToCart";
   static const String updateUserUrl = "";
+  static const paymentUrl = "/stripe/create-checkout-session";
+  static const paymentBaseUrl = "payment-production-261a.up.railway.app";
   static const String sneakers = "/api/products";
   static const String sneaker = "/api/product/id";
   static const String orders = "/api/orders";
   static const String search = "/api/products/search/key";
 }
+// https://payment-production-261a.up.railway.app/stripe/checkout-success
+// https://payment-production-261a.up.railway.app/stripe/cancel

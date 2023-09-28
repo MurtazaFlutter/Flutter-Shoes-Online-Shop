@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_shop/controllers/cart_provider.dart';
 import 'package:online_shop/controllers/fav_notifier.dart';
 import 'package:online_shop/controllers/login_notifier.dart';
 import 'package:online_shop/controllers/main_screen_notifier.dart';
@@ -19,6 +20,7 @@ void main() async {
     ChangeNotifierProvider(create: ((context) => ProductNotifier())),
     ChangeNotifierProvider(create: ((context) => FavoriteNotifier())),
     ChangeNotifierProvider(create: ((context) => LoginNotifier())),
+    ChangeNotifierProvider(create: ((context) => CartNotifier())),
   ], child: const MyApp()));
 }
 

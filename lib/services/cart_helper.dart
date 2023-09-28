@@ -38,8 +38,6 @@ class CartHelper {
     var response = await http.get(url, headers: requestHeaders);
 
     if (response.statusCode == 200) {
-      print("getting cart ${response.body}");
-      print("getting cart ${response.statusCode}");
       var jsonData = json.decode(response.body);
 
       List<Product> cart = [];
@@ -51,6 +49,25 @@ class CartHelper {
       return cart;
     } else {
       throw Exception("Failed to show cart");
+    }
+  }
+
+  Future<bool> deleteItem(String id) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("Token");
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+      'Token': 'Bearer $token',
+    };
+
+    var url = Uri.http(Config.apiUrl, "${Config.addToCartUrl}/$id");
+
+    var response = await client.delete(url, headers: requestHeaders);
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

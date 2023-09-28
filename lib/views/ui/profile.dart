@@ -6,6 +6,8 @@ import 'package:online_shop/views/components/shared/reusable_text.dart';
 import 'package:online_shop/views/components/shared/tiles_widget.dart';
 import 'package:online_shop/views/ui/auth/Login_screen.dart';
 import 'package:online_shop/views/ui/auth/non_user.dart';
+import 'package:online_shop/views/ui/cart_screen.dart';
+import 'package:online_shop/views/ui/cartpage/cart_page.dart';
 import 'package:online_shop/views/ui/fav/favourite_screen.dart';
 import '../components/shared/app_style.dart';
 import 'auth/components/custom_app_bar.dart';
@@ -121,11 +123,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     leading: MaterialCommunityIcons
                                         .truck_fast_outline,
                                     onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          (MaterialPageRoute(
-                                              builder: ((context) =>
-                                                  const LoginScreen()))));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     (MaterialPageRoute(
+                                      //         builder: ((context) =>
+                                      //             const LoginScreen()))));
                                     },
                                   ),
                                   TilesWidget(
@@ -137,7 +139,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   TilesWidget(
                                     title: "Cart",
                                     leading: Fontisto.shopping_bag_1,
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          (MaterialPageRoute(
+                                              builder: ((context) =>
+                                                  const CartPage()))));
+                                    },
                                   ),
                                 ],
                               ),

@@ -1,14 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_shop/controllers/cart_provider.dart';
-import 'package:online_shop/controllers/fav_notifier.dart';
-import 'package:online_shop/controllers/login_notifier.dart';
-import 'package:online_shop/controllers/main_screen_notifier.dart';
-import 'package:online_shop/controllers/payment_notifier.dart';
-import 'package:online_shop/controllers/product_notifier.dart';
-import 'package:provider/provider.dart';
-import 'views/ui/main_screen.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'utils/exports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

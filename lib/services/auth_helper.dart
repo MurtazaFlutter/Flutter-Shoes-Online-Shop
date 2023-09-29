@@ -1,12 +1,5 @@
-import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:online_shop/models/auth/login_model.dart';
-import 'package:online_shop/models/auth/signup_model.dart';
-import 'package:online_shop/models/auth_response/login_res_model.dart';
-import 'package:online_shop/models/auth_response/profile_model.dart';
-import 'package:online_shop/services/config.dart';
-import 'package:online_shop/utils/exports.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../utils/exports.dart';
 
 class AuthHelper {
   static var client = http.Client();

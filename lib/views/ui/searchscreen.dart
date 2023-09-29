@@ -1,7 +1,5 @@
-import 'package:online_shop/controllers/product_notifier.dart';
-import 'package:online_shop/utils/exports.dart';
 import 'package:online_shop/views/components/shared/custom_field.dart';
-import 'package:online_shop/views/components/shared/reusable_text.dart';
+import '../../utils/exports.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

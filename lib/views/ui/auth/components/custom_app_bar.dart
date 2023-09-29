@@ -1,7 +1,5 @@
 import 'package:svg_flutter/svg.dart';
-
 import '../../../../utils/exports.dart';
-import '../../../components/shared/reusable_text.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({

@@ -1,14 +1,5 @@
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:online_shop/controllers/login_notifier.dart';
-import 'package:online_shop/controllers/product_notifier.dart';
-import 'package:online_shop/models/cart/add_to_cart.dart';
 import 'package:online_shop/models/sneaker_model.dart';
-import 'package:online_shop/services/cart_helper.dart';
-import 'package:online_shop/utils/exports.dart';
-import '../auth/Login_screen.dart';
-import 'components/checkout_btn.dart';
-import 'components/product_images.dart';
-import 'components/select_size.dart';
+import '../../../utils/exports.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final Sneakers sneakers;

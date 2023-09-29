@@ -1,4 +1,3 @@
-import 'package:hive/hive.dart';
 import 'package:online_shop/utils/exports.dart';
 
 class FavoriteNotifier extends ChangeNotifier {

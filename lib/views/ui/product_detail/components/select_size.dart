@@ -1,4 +1,3 @@
-import '../../../../controllers/product_notifier.dart';
 import '../../../../utils/exports.dart';
 
 class SelectSize extends StatelessWidget {

@@ -1,10 +1,6 @@
-import 'dart:convert';
 import 'dart:developer';
-import 'package:online_shop/models/cart/add_to_cart.dart';
 import 'package:http/http.dart' as http;
-import 'package:online_shop/models/cart/get_products.dart';
-import 'package:online_shop/services/config.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../utils/exports.dart';
 
 class CartHelper {
   var client = http.Client();

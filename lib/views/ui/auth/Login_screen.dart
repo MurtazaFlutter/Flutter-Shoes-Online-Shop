@@ -1,11 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:online_shop/controllers/login_notifier.dart';
-import 'package:online_shop/models/auth/login_model.dart';
 import 'package:online_shop/utils/exports.dart';
-import 'package:online_shop/views/components/shared/custom_textfield.dart';
-import 'package:online_shop/views/components/shared/reusable_text.dart';
 import 'package:online_shop/views/ui/auth/register.dart';
-import 'package:online_shop/views/ui/main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

@@ -1,16 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:online_shop/controllers/login_notifier.dart';
-import 'package:online_shop/services/auth_helper.dart';
-import 'package:online_shop/utils/exports.dart';
-import 'package:online_shop/views/components/shared/reusable_text.dart';
-import 'package:online_shop/views/components/shared/tiles_widget.dart';
-import 'package:online_shop/views/ui/auth/Login_screen.dart';
-import 'package:online_shop/views/ui/auth/non_user.dart';
-import 'package:online_shop/views/ui/cart_screen.dart';
-import 'package:online_shop/views/ui/cartpage/cart_page.dart';
-import 'package:online_shop/views/ui/fav/favourite_screen.dart';
-import '../components/shared/app_style.dart';
-import 'auth/components/custom_app_bar.dart';
+import '../../utils/exports.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

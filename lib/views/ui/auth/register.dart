@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:online_shop/controllers/login_notifier.dart';
-import 'package:online_shop/models/auth/signup_model.dart';
-import 'package:online_shop/views/components/shared/custom_textfield.dart';
-import 'package:online_shop/views/ui/auth/Login_screen.dart';
 import '../../../utils/exports.dart';
-import '../../components/shared/reusable_text.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

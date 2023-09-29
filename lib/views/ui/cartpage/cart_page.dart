@@ -1,16 +1,5 @@
-import 'package:hive/hive.dart';
-import 'package:online_shop/controllers/cart_provider.dart';
-import 'package:online_shop/controllers/payment_notifier.dart';
-import 'package:online_shop/models/cart/get_products.dart';
-import 'package:online_shop/models/orders/orders_req.dart';
-import 'package:online_shop/services/cart_helper.dart';
-import 'package:online_shop/services/payment_helper.dart';
-import 'package:online_shop/utils/exports.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:online_shop/views/components/shared/reusable_text.dart';
-import 'package:online_shop/views/ui/main_screen.dart';
-import 'package:online_shop/views/ui/product_detail/components/checkout_btn.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../../utils/exports.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});

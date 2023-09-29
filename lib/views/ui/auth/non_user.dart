@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:online_shop/utils/exports.dart';
-import 'package:online_shop/views/components/shared/reusable_text.dart';
-import 'package:online_shop/views/ui/auth/Login_screen.dart';
-import 'package:svg_flutter/svg.dart';
-import 'components/custom_app_bar.dart';
 
 class NonUser extends StatelessWidget {
   const NonUser({super.key});

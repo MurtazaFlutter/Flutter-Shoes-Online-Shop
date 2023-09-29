@@ -35,7 +35,8 @@ class HomeWidget extends StatelessWidget {
               future: _male,
               builder: ((context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator.adaptive();
+                  return const Center(
+                      child: CircularProgressIndicator.adaptive());
                 } else if (snapshot.hasError) {
                   return Text('error ${snapshot.hasError}');
                 } else {
@@ -113,7 +114,8 @@ class HomeWidget extends StatelessWidget {
             future: _male,
             builder: ((context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator.adaptive();
+                return const Center(
+                    child: CircularProgressIndicator.adaptive());
               } else if (snapshot.hasError) {
                 return Text('error ${snapshot.hasError}');
               } else {

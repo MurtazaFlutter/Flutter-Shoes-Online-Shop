@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:online_shop/models/cart/add_to_cart.dart';
 import 'package:http/http.dart' as http;
 import 'package:online_shop/models/cart/get_products.dart';
@@ -12,7 +13,8 @@ class CartHelper {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("Token");
     Map<String, String> requestHeaders = {
-      'Content-Type': 'application/json' "Token: $token"
+      'Content-Type': 'application/json',
+      'Token': 'Bearer $token'
     };
 
     var url = Uri.http(Config.apiUrl, Config.addToCartUrl);
@@ -36,8 +38,12 @@ class CartHelper {
     var url = Uri.http(Config.apiUrl, Config.getCartUrl);
 
     var response = await http.get(url, headers: requestHeaders);
+    log(" cart data ${response.body}");
+    log("status ${response.statusCode}");
 
     if (response.statusCode == 200) {
+      log(" cart data ${response.body}");
+      log("status ${response.statusCode}");
       var jsonData = json.decode(response.body);
 
       List<Product> cart = [];

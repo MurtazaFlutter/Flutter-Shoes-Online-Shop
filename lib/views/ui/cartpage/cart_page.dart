@@ -69,13 +69,15 @@ class _CartPageState extends State<CartPage> {
                       return const Center(
                         child: CircularProgressIndicator.adaptive(),
                       );
-                    } else if (snapshot.data!.isEmpty) {
-                      return Center(
-                          child: ReusableText(
-                              text: "No Items in the Cart yet",
-                              style: appStyle(
-                                  40.sp, Colors.black, FontWeight.bold, 1)));
-                    } else if (snapshot.hasError) {
+                    }
+                    // else if (snapshot.data!.isEmpty) {
+                    //   return Center(
+                    //       child: ReusableText(
+                    //           text: "No Items in the Cart yet",
+                    //           style: appStyle(
+                    //               40.sp, Colors.black, FontWeight.bold, 1)));
+                    // }
+                    else if (snapshot.hasError) {
                       return Center(
                           child: ReusableText(
                               text: "Failed to get cart data ${snapshot.error}",

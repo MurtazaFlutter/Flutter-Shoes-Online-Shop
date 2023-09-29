@@ -32,7 +32,7 @@ export 'package:hive_flutter/hive_flutter.dart';
 export 'package:online_shop/controllers/fav_notifier.dart';
 export 'package:online_shop/controllers/main_screen_notifier.dart';
 export 'package:online_shop/controllers/product_notifier.dart';
-export 'package:online_shop/oldModel/consts.dart';
+export 'package:online_shop/models/consts.dart';
 export 'package:online_shop/views/ui/fav/favourite_screen.dart';
 export 'package:flutter_rating_bar/flutter_rating_bar.dart';
 export 'package:online_shop/models/cart/add_to_cart.dart';

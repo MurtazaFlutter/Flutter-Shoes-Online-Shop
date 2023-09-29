@@ -3,11 +3,11 @@ class Config {
   static const String loginUrl = "/api/login/";
   static const String signUpUrl = "/api/signup/";
   static const String getUser = "/api/getUser";
-  static const String getCartUrl = "/api/getCart";
-  static const String addToCartUrl = "/api/addToCart";
+  static const String getCartUrl = "/api/find";
+  static const String addToCartUrl = "/api/cart";
   static const String updateUserUrl = "";
-  static const paymentUrl = "/stripe/create-checkout-session";
-  static const paymentBaseUrl = "payment-production-261a.up.railway.app";
+  static const String paymentUrl = "/stripe/create-checkout-session";
+  static const String paymentBaseUrl = "payment-production-261a.up.railway.app";
   static const String sneakers = "/api/products";
   static const String sneaker = "/api/product/id";
   static const String orders = "/api/orders";

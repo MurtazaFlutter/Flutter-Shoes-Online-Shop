@@ -19,14 +19,14 @@ class FavoriteNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _createFav(Map<String, dynamic> addFav) async {
-    await _favBox.add(addFav);
-    getFavorites();
-  }
+  // Future<void> _createFav(Map<String, dynamic> addFav) async {
+  //   await _favBox.add(addFav);
+  //   getFavorites();
+  // }
 
   getFavorites() {
     final favData = _favBox.keys.map((key) {
-      final item = _favBox.get(key);
+      // final item = _favBox.get(key);
 
       return {
         "key": key,

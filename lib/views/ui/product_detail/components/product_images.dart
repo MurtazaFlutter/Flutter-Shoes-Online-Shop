@@ -27,7 +27,7 @@ class _ProductImagesState extends State<ProductImages> {
 
   getFavorites() {
     final favData = _favBox.keys.map((key) {
-      final item = _favBox.get(key);
+      // final item = _favBox.get(key);
 
       return {
         "key": key,

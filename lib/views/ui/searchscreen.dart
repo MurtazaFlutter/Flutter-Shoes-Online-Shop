@@ -12,7 +12,7 @@ class _SearchScreenState extends State<SearchScreen> {
   final searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final productNotifier = Provider.of<ProductNotifier>(context);
+    //  final productNotifier = Provider.of<ProductNotifier>(context);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

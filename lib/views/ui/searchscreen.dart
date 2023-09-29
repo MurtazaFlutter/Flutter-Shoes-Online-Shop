@@ -44,7 +44,7 @@ class _SearchScreenState extends State<SearchScreen> {
               child: Image.asset("assets/images/Pose23.png"),
             )
           : FutureBuilder(
-              future: Helper().search(searchController.text),
+              future: ProductHelper().search(searchController.text),
               builder: ((context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(

@@ -4,7 +4,7 @@ import 'package:online_shop/models/sneaker_model.dart';
 import 'package:online_shop/services/config.dart';
 import 'package:http/http.dart' as http;
 
-class Helper {
+class ProductHelper {
   var client = http.Client();
   Future<String> loadJsonData() async {
     return await rootBundle.loadString('assets/json/men_shoes.json');

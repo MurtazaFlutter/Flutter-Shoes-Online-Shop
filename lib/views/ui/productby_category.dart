@@ -20,15 +20,15 @@ class _ProductByCategoryState extends State<ProductByCategory>
   late Future<List<Sneakers>> _kids;
 
   void getMale() {
-    _male = Helper().getMaleSneakers();
+    _male = ProductHelper().getMaleSneakers();
   }
 
   void getFemale() {
-    _female = Helper().getFemaleSneakers();
+    _female = ProductHelper().getFemaleSneakers();
   }
 
   void getKids() {
-    _kids = Helper().getKidsShoes();
+    _kids = ProductHelper().getKidsShoes();
   }
 
   @override

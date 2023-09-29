@@ -4,7 +4,7 @@ export 'package:provider/provider.dart';
 export 'package:online_shop/views/components/shared/stagger_tile.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:flutter_vector_icons/flutter_vector_icons.dart';
-export 'package:online_shop/services/helper.dart';
+export 'package:online_shop/services/product_helper.dart';
 export 'package:online_shop/views/components/shared/latest_shoe.dart';
 export '../../utils/exports.dart';
 export 'package:online_shop/views/components/shared/app_style.dart';

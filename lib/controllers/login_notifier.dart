@@ -59,7 +59,7 @@ class LoginNotifier extends ChangeNotifier {
   logout() async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    preferences.remove('token');
+    preferences.remove('Token');
     preferences.remove('userId');
     preferences.setBool('isLogged', false);
     loggedIn = preferences.getBool('isLogged') ?? false;

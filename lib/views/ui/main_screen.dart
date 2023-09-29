@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:online_shop/controllers/main_screen_notifier.dart';
-import 'package:online_shop/views/ui/cartpage/cart_page.dart';
-import 'package:online_shop/views/ui/profile.dart';
-import 'package:provider/provider.dart';
-import '../components/shared/bottom_nav.dart';
-import 'fav/favourite_screen.dart';
-import 'home_screen.dart';
-import 'searchscreen.dart';
+import '../../utils/exports.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
@@ -18,6 +10,7 @@ class MainScreen extends StatelessWidget {
     const CartPage(),
     const ProfileScreen()
   ];
+
   @override
   Widget build(BuildContext context) {
     return Consumer<MainScreenNotifier>(

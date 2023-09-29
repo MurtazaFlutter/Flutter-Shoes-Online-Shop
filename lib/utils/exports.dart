@@ -45,3 +45,7 @@ export 'package:online_shop/models/auth/login_model.dart';
 export 'package:online_shop/models/auth_response/login_res_model.dart';
 export 'package:online_shop/models/auth_response/profile_model.dart';
 export 'package:online_shop/services/config.dart';
+export 'package:online_shop/views/components/shared/bottom_nav.dart';
+export 'package:online_shop/views/ui/home_screen.dart';
+export 'package:online_shop/views/ui/profile.dart';
+export 'package:online_shop/views/ui/searchscreen.dart';

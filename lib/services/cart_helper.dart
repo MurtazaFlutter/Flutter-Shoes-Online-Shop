@@ -17,6 +17,9 @@ class CartHelper {
     var response = await client.post(url,
         body: jsonEncode(cart.toJson()), headers: requestHeaders);
 
+    log("add to cart body ${response.body}");
+    log("add to cart body ${response.statusCode}");
+
     if (response.statusCode == 200) {
       return true;
     } else {

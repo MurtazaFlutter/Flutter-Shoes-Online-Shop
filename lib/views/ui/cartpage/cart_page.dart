@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_slidable/flutter_slidable.dart';
 import '../../../utils/exports.dart';
 
@@ -9,7 +11,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  List<dynamic> cart = [];
+  // List<dynamic> cart = [];
 
   late Future<List<Product>> _cartList;
 
@@ -74,11 +76,13 @@ class _CartPageState extends State<CartPage> {
                                   40.sp, Colors.black, FontWeight.bold, 1)));
                     } else {
                       final cartData = snapshot.data;
+
                       return ListView.builder(
                           itemCount: cartData!.length,
                           padding: EdgeInsets.zero,
                           itemBuilder: ((context, index) {
                             final data = cartData[index];
+                            debugPrint("object $data");
 
                             return InkWell(
                               onTap: () {

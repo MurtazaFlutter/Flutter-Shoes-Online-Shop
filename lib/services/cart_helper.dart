@@ -42,9 +42,10 @@ class CartHelper {
 
       List<Product> cart = [];
       var products = jsonData['products'];
+      log(" cart data ${response.body}");
 
       cart = List<Product>.from(
-          products.map((products) => Product.fromJson(products)));
+          products.map((product) => Product.fromJson(product)));
       log(" cart data $cart");
 
       return cart;

@@ -28,8 +28,8 @@ class Product {
   });
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
-        cartItem: ProductItem.fromJson(json["cartItem"] ?? ''),
-        quantity: json["quantity"] ?? '',
+        cartItem: ProductItem.fromJson(json["cartItem"]),
+        quantity: json["quantity"] ?? 0,
         id: json["_id"] ?? '',
       );
 }

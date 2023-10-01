@@ -71,9 +71,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             appStyle(30.h, Colors.white, FontWeight.bold, 1.5),
                       ),
                       TabBar(
+                          dividerColor: Colors.transparent,
                           padding: EdgeInsets.zero,
                           indicatorSize: TabBarIndicatorSize.label,
-                          indicatorColor: Colors.black,
+                          // indicatorColor: Colors.white,
                           controller: _tabController,
                           isScrollable: true,
                           labelColor: Colors.white,

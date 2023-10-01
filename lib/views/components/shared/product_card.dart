@@ -41,9 +41,10 @@ class _ProductCardState extends State<ProductCard> {
                     height: 150.h,
                     decoration: BoxDecoration(
                         image: DecorationImage(
+                            fit: BoxFit.contain,
                             image: CachedNetworkImageProvider(
-                      product.imageUrl[0],
-                    ))),
+                              product.imageUrl[0],
+                            ))),
                   ),
                   Positioned(
                       right: 12.w,
@@ -100,7 +101,7 @@ class _ProductCardState extends State<ProductCard> {
                   children: [
                     Text(
                       "\$${product.price}",
-                      style: appStyle(25.sp, Colors.black, FontWeight.w600, 0),
+                      style: appStyle(21.sp, Colors.black, FontWeight.w600, 0),
                     ),
                     Row(
                       children: [
@@ -113,6 +114,8 @@ class _ProductCardState extends State<ProductCard> {
                           width: 3.w,
                         ),
                         ChoiceChip(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
                           label: const Text(''),
                           selected: selected,
                           visualDensity: VisualDensity.compact,

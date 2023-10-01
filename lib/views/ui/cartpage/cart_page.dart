@@ -9,8 +9,6 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  List<dynamic> cart = [];
-
   late Future<List<Product>> _cartList;
 
   @override

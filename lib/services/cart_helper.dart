@@ -38,6 +38,7 @@ class CartHelper {
 
     if (response.statusCode == 200) {
       var jsonData = json.decode(response.body);
+      log(" cart data ${response.body}");
 
       List<Product> cart = [];
       var products = jsonData['products'];

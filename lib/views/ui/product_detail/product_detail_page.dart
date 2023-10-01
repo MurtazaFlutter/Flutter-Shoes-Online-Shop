@@ -169,7 +169,7 @@ class ProductDetailPage extends StatelessWidget {
                                 ),
                                 SizedBox(
                                   width:
-                                      MediaQuery.of(context).size.height * 0.8,
+                                      MediaQuery.of(context).size.height * 0.5,
                                   child: Text(
                                     sneakers.title,
                                     style: appStyle(26.sp, Colors.black,
@@ -182,6 +182,7 @@ class ProductDetailPage extends StatelessWidget {
                                 Text(
                                   sneakers.description,
                                   textAlign: TextAlign.justify,
+                                  maxLines: 4,
                                   style: appStyle(14.sp, Colors.black,
                                       FontWeight.normal, 1),
                                 ),

@@ -40,10 +40,11 @@ class CartHelper {
       var jsonData = json.decode(response.body);
 
       List<Product> cart = [];
-      var products = jsonData[0]['products'];
+      var products = jsonData['products'];
 
       cart = List<Product>.from(
           products.map((products) => Product.fromJson(products)));
+      log("  data $cart");
 
       return cart;
     } else {

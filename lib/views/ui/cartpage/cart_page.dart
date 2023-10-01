@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_slidable/flutter_slidable.dart';
 import '../../../utils/exports.dart';
 
@@ -53,7 +51,7 @@ class _CartPageState extends State<CartPage> {
               height: 20,
             ),
             Expanded(
-              child: FutureBuilder<List<Product>>(
+              child: FutureBuilder(
                   future: _cartList,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -61,7 +59,8 @@ class _CartPageState extends State<CartPage> {
                         child: CircularProgressIndicator.adaptive(),
                       );
                     }
-                    // else if (snapshot.data!.isEmpty) {
+                    // else if (snapshot.data!.isEmpty ||
+                    //     snapshot.data == null) {
                     //   return Center(
                     //       child: ReusableText(
                     //           text: "No Items in the Cart yet",
@@ -69,6 +68,7 @@ class _CartPageState extends State<CartPage> {
                     //               40.sp, Colors.black, FontWeight.bold, 1)));
                     // }
                     else if (snapshot.hasError) {
+                      print(snapshot.error);
                       return Center(
                           child: ReusableText(
                               text: "Failed to get cart data ${snapshot.error}",
@@ -76,13 +76,13 @@ class _CartPageState extends State<CartPage> {
                                   40.sp, Colors.black, FontWeight.bold, 1)));
                     } else {
                       final cartData = snapshot.data;
+                      debugPrint("list ${cartData!.length}");
 
                       return ListView.builder(
-                          itemCount: cartData!.length,
+                          itemCount: cartData.length,
                           padding: EdgeInsets.zero,
                           itemBuilder: ((context, index) {
                             final data = cartData[index];
-                            debugPrint("object $data");
 
                             return InkWell(
                               onTap: () {

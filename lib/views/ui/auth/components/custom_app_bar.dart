@@ -11,14 +11,6 @@ class CustomAppBar extends StatelessWidget {
     return AppBar(
       backgroundColor: const Color(0xFFE3E2E2),
       elevation: 0,
-      leading: IconButton(
-        onPressed: () {},
-        icon: const Icon(
-          MaterialCommunityIcons.qrcode_scan,
-          size: 18,
-          color: Colors.black,
-        ),
-      ),
       actions: [
         GestureDetector(
           onTap: () {},
@@ -29,7 +21,10 @@ class CustomAppBar extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SvgPicture.asset('assets/images/usa.svg'),
+                    SvgPicture.asset(
+                      'assets/images/usa.svg',
+                      height: 30.h,
+                    ),
                     SizedBox(
                       width: 5.w,
                     ),
@@ -37,6 +32,9 @@ class CustomAppBar extends StatelessWidget {
                       height: 15.h,
                       width: 1.w,
                       color: Colors.grey,
+                    ),
+                    SizedBox(
+                      width: 5.w,
                     ),
                     ReusableText(
                         text: "USA",

@@ -1,19 +1,14 @@
 import 'package:online_shop/models/sneaker_model.dart';
 import '../../../utils/exports.dart';
 
-class ProductDetailPage extends StatefulWidget {
+class ProductDetailPage extends StatelessWidget {
   final Sneakers sneakers;
 
-  const ProductDetailPage({
+  ProductDetailPage({
     super.key,
     required this.sneakers,
   });
 
-  @override
-  State<ProductDetailPage> createState() => _ProductDetailPageState();
-}
-
-class _ProductDetailPageState extends State<ProductDetailPage> {
   final PageController _pageController = PageController();
 
   @override
@@ -62,7 +57,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       width: MediaQuery.of(context).size.width,
                       child: ProductImages(
                         pageController: _pageController,
-                        sneaker: widget.sneakers,
+                        sneaker: sneakers,
                         productNotifier: productNotifier,
                       ),
                     ),
@@ -85,14 +80,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.sneakers.name,
+                                  sneakers.name,
                                   style: appStyle(
                                       20.sp, Colors.black, FontWeight.bold, 1),
                                 ),
                                 Row(
                                   children: [
                                     Text(
-                                      widget.sneakers.category,
+                                      sneakers.category,
                                       style: appStyle(20.sp, Colors.grey,
                                           FontWeight.w500, 1),
                                     ),
@@ -122,7 +117,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "\$${widget.sneakers.price}",
+                                      "\$${sneakers.price}",
                                       style: appStyle(26.sp, Colors.black,
                                           FontWeight.w600, 1),
                                     ),
@@ -176,34 +171,31 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   width:
                                       MediaQuery.of(context).size.height * 0.8,
                                   child: Text(
-                                    widget.sneakers.title,
-                                    style: appStyle(
-                                        26, Colors.black, FontWeight.w700, 1),
+                                    sneakers.title,
+                                    style: appStyle(26.sp, Colors.black,
+                                        FontWeight.w700, 1),
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  widget.sneakers.description,
+                                  sneakers.description,
                                   textAlign: TextAlign.justify,
-                                  maxLines: 4,
-                                  style: appStyle(
-                                      14, Colors.black, FontWeight.normal, 1),
+                                  style: appStyle(14.sp, Colors.black,
+                                      FontWeight.normal, 1),
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
+                                const Spacer(),
                                 Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 12),
                                     child: CheckOutButton(
-                                      label: 'Add to bag',
+                                      label: 'Add to Cart',
                                       onTap: () async {
                                         if (loginNotifier.loggedIn == true) {
                                           AddToCart cart = AddToCart(
-                                              cartItem: widget.sneakers.id,
+                                              cartItem: sneakers.id,
                                               quantity: 1);
                                           CartHelper().addToCart(cart);
                                         } else {

@@ -9,14 +9,14 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  // List<dynamic> cart = [];
+  List<dynamic> cart = [];
 
   late Future<List<Product>> _cartList;
 
   @override
   void initState() {
-    super.initState();
     _cartList = CartHelper().getCart();
+    super.initState();
   }
 
   @override
@@ -68,6 +68,7 @@ class _CartPageState extends State<CartPage> {
                     //               40.sp, Colors.black, FontWeight.bold, 1)));
                     // }
                     else if (snapshot.hasError) {
+                      print("data ${snapshot.data}");
                       print(snapshot.error);
                       return Center(
                           child: ReusableText(
@@ -76,10 +77,9 @@ class _CartPageState extends State<CartPage> {
                                   40.sp, Colors.black, FontWeight.bold, 1)));
                     } else {
                       final cartData = snapshot.data;
-                      debugPrint("list ${cartData!.length}");
 
                       return ListView.builder(
-                          itemCount: cartData.length,
+                          itemCount: cartData!.length,
                           padding: EdgeInsets.zero,
                           itemBuilder: ((context, index) {
                             final data = cartData[index];

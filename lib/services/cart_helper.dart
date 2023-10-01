@@ -44,7 +44,7 @@ class CartHelper {
 
       cart = List<Product>.from(
           products.map((products) => Product.fromJson(products)));
-      log("  data $cart");
+      log(" cart data $cart");
 
       return cart;
     } else {

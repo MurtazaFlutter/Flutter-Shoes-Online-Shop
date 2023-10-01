@@ -30,7 +30,7 @@ class SelectSize extends StatelessWidget {
           width: 10,
         ),
         SizedBox(
-          height: 40,
+          height: 50,
           child: ListView.builder(
               itemCount: productNotifier.shoesSizes.length,
               scrollDirection: Axis.horizontal,
@@ -41,7 +41,7 @@ class SelectSize extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: ChoiceChip(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(60)),
+                        borderRadius: BorderRadius.circular(30)),
                     side: const BorderSide(
                         color: Colors.black,
                         width: 1,
@@ -50,7 +50,7 @@ class SelectSize extends StatelessWidget {
                     label: Text(
                       productNotifier.shoesSizes[index]['size'],
                       style: appStyle(
-                          18,
+                          17.sp,
                           sizes['isSelected'] ? Colors.white : Colors.black,
                           FontWeight.w500,
                           1),

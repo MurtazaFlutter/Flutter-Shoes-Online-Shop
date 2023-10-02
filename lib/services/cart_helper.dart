@@ -24,7 +24,7 @@ class CartHelper {
     }
   }
 
-  Future<List<Product>> getCart() async {
+  Future<List<GetCart>> getCart() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("Token");
     Map<String, String> requestHeaders = {
@@ -40,12 +40,12 @@ class CartHelper {
       var jsonData = json.decode(response.body);
       log(" cart data ${response.body}");
 
-      List<Product> cart = [];
+      List<GetCart> cart = [];
       var products = jsonData['products'];
       log(" cart data ${response.body}");
 
-      cart = List<Product>.from(
-          products.map((product) => Product.fromJson(product)));
+      cart = List<GetCart>.from(
+          products.map((product) => GetCart.fromJson(product)));
       log(" cart data $cart");
 
       return cart;
